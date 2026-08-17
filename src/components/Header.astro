@@ -1,0 +1,28 @@
+---
+interface Props {
+    currentPage?: string;
+}
+const { currentPage = '' } = Astro.props;
+
+const navItems = [
+    { href: '/', label: 'Tool' },
+    { href: '/how-it-works', label: 'How It Works' },
+    { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class="header">
+    <div class="header-inner">
+        <a href="/" class="logo">Press<span>Folio</span></a>
+        
+        <nav class="nav-links">
+            {navItems.map(item => (
+                <a href={item.href} class={currentPage === item.href ? 'active' : ''}>
+                    {item.label}
+                </a>
+            ))}
+        </nav>
+        
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+</header>

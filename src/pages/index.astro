@@ -1,0 +1,485 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Press to Blog Converter" description="Transform press releases into beautiful blog posts instantly.">
+    <Header currentPage="/" />
+    
+    <main>
+        <!-- Hero -->
+        <section class="hero container">
+            <h1>Press <span>→</span> Blog</h1>
+            <p class="hero-tagline">Paste any press release. Get a beautifully formatted blog post ready to publish.</p>
+        </section>
+
+        <!-- Ad -->
+        <div class="container">
+            <div class="ad-placeholder leaderboard">📢 AD SPACE — Google AdSense</div>
+        </div>
+
+        <!-- Tool Container -->
+        <div class="tool-container container">
+            
+            <!-- Stage Navigation -->
+            <div class="stages-nav">
+                <button class="stage-btn active" data-stage="1">
+                    <span class="stage-number">1</span>
+                    <span>Input</span>
+                </button>
+                <button class="stage-btn" data-stage="2">
+                    <span class="stage-number">2</span>
+                    <span>Parse</span>
+                </button>
+                <button class="stage-btn" data-stage="3">
+                    <span class="stage-number">3</span>
+                    <span>Refine</span>
+                </button>
+                <button class="stage-btn" data-stage="4">
+                    <span class="stage-number">4</span>
+                    <span>Compose</span>
+                </button>
+                <button class="stage-btn" data-stage="5">
+                    <span class="stage-number">5</span>
+                    <span>Export</span>
+                </button>
+            </div>
+
+            <!-- STAGE 1: INPUT -->
+            <div class="stage-content active" id="stage-1">
+                <div class="stage-header">
+                    <h2>📥 Stage 1: Paste Your Press Release</h2>
+                    <p>Copy the text from any official press release and paste it below. We support PIB India, company PRs, and more.</p>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Raw Press Release Text</label>
+                    <textarea 
+                        id="raw-input" 
+                        class="form-textarea raw-input" 
+                        placeholder="Paste the press release text here...
+
+Example:
+Ministry of Finance
+Government of India announces new tax reforms
+New Delhi: The Finance Ministry today announced...
+"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Source Type</label>
+                    <select id="source-type" class="form-select">
+                        <option value="pib">Press Information Bureau (PIB)</option>
+                        <option value="company">Company Press Release</option>
+                        <option value="ministerial">Ministerial Statement</option>
+                        <option value="other">Other Source</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary" id="parse-btn">
+                    🔍 Run Auto-Parse →
+                </button>
+            </div>
+
+            <!-- STAGE 2: PARSE -->
+            <div class="stage-content" id="stage-2">
+                <div class="stage-header">
+                    <h2>🔍 Stage 2: Extracted Parameters</h2>
+                    <p>We've analyzed your press release and extracted the key information. Review and edit below.</p>
+                </div>
+
+                <div class="params-grid">
+                    <div class="param-card">
+                        <h4>Ministry / Source</h4>
+                        <div class="value" id="extracted-source">-</div>
+                    </div>
+                    <div class="param-card">
+                        <h4>Date</h4>
+                        <div class="value" id="extracted-date">-</div>
+                    </div>
+                    <div class="param-card">
+                        <h4>Location</h4>
+                        <div class="value" id="extracted-location">-</div>
+                    </div>
+                    <div class="param-card">
+                        <h4>Headline</h4>
+                        <div class="value" id="extracted-headline">-</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Key Quote</label>
+                    <textarea id="extracted-quote" class="form-textarea" style="min-height: 100px;" placeholder="Key statement from the release..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Key Figures (one per line)</label>
+                    <textarea id="extracted-figures" class="form-textarea" style="min-height: 100px;" placeholder="• Figure 1&#10;• Figure 2&#10;• Figure 3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Context / Summary</label>
+                    <textarea id="extracted-context" class="form-textarea" style="min-height: 100px;" placeholder="Brief context about the announcement..."></textarea>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="proceed-refine">
+                        ✏️ Proceed to Refine →
+                    </button>
+                    <button class="btn btn-secondary" id="back-to-input">
+                        ← Back to Input
+                    </button>
+                </div>
+            </div>
+
+            <!-- STAGE 3: REFINE -->
+            <div class="stage-content" id="stage-3">
+                <div class="stage-header">
+                    <h2>✏️ Stage 3: Refine & Edit</h2>
+                    <p>Fine-tune the extracted parameters to match your style and ensure accuracy.</p>
+                </div>
+
+                <div class="params-grid">
+                    <div class="form-group">
+                        <label class="form-label">Title</label>
+                        <input type="text" id="refine-title" class="form-input" placeholder="Your blog post title">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select id="refine-category" class="form-select">
+                            <option value="government">Government</option>
+                            <option value="business">Business</option>
+                            <option value="technology">Technology</option>
+                            <option value="economy">Economy</option>
+                            <option value="health">Health</option>
+                            <option value="environment">Environment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Intro Paragraph</label>
+                    <textarea id="refine-intro" class="form-textarea" style="min-height: 120px;" placeholder="Write an engaging intro..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Blog Format</label>
+                    <select id="refine-format" class="form-select">
+                        <option value="article">📄 News Article</option>
+                        <option value="brief">📋 Quick Brief (bullet points)</option>
+                        <option value="thread">🐦 Tweet Thread Style</option>
+                    </select>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="generate-post">
+                        ✍️ Generate Blog Post →
+                    </button>
+                    <button class="btn btn-secondary" id="back-to-parse">
+                        ← Back to Parse
+                    </button>
+                </div>
+            </div>
+
+            <!-- STAGE 4: COMPOSE -->
+            <div class="stage-content" id="stage-4">
+                <div class="stage-header">
+                    <h2>✍️ Stage 4: Your Blog Post</h2>
+                    <p>Here's your generated blog post. Review it and make any final tweaks.</p>
+                </div>
+
+                <!-- Preview -->
+                <div class="preview-box" id="preview-box">
+                    <h1 class="preview-title" id="preview-title">Your Title Here</h1>
+                    <p class="preview-meta" id="preview-meta">Category • Date</p>
+                    
+                    <div class="preview-content" id="preview-content">
+                        <p>Your blog content will appear here...</p>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="proceed-export">
+                        📤 Proceed to Export →
+                    </button>
+                    <button class="btn btn-secondary" id="back-to-refine">
+                        ← Edit More
+                    </button>
+                </div>
+            </div>
+
+            <!-- STAGE 5: EXPORT -->
+            <div class="stage-content" id="stage-5">
+                <div class="stage-header">
+                    <h2>📤 Stage 5: Export & Share</h2>
+                    <p>Copy your blog post as Markdown, download it, or share it directly.</p>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="copy-markdown">
+                        📋 Copy Markdown
+                    </button>
+                    <button class="btn btn-secondary" id="download-md">
+                        📥 Download .md
+                    </button>
+                    <button class="btn btn-success" id="copy-html">
+                        🌐 Copy HTML
+                    </button>
+                </div>
+
+                <div class="form-group" style="margin-top: 2rem;">
+                    <label class="form-label">Raw Markdown Output</label>
+                    <div class="markdown-output" id="markdown-output">
+                        Your markdown will appear here...
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="start-new">
+                        🔄 Start New Post
+                    </button>
+                    <button class="btn btn-secondary" id="back-to-compose">
+                        ← Back to Preview
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Ad -->
+        <div class="container">
+            <div class="ad-placeholder leaderboard">📢 AD SPACE — Google AdSense</div>
+        </div>
+    </main>
+
+    <Footer />
+</BaseLayout>
+
+<script>
+    // Stage Navigation
+    const stageBtns = document.querySelectorAll('.stage-btn');
+    const stages = document.querySelectorAll('.stage-content');
+    let currentStage = 1;
+
+    function showStage(n) {
+        currentStage = n;
+        stageBtns.forEach((btn, i) => {
+            btn.classList.toggle('active', i + 1 === n);
+            btn.classList.toggle('completed', i + 1 < n);
+        });
+        stages.forEach((stage, i) => {
+            stage.classList.toggle('active', i + 1 === n);
+        });
+    }
+
+    stageBtns.forEach((btn, i) => {
+        btn.addEventListener('click', () => showStage(i + 1));
+    });
+
+    // Navigation Buttons
+    document.getElementById('parse-btn')?.addEventListener('click', () => {
+        runParser();
+        showStage(2);
+    });
+
+    document.getElementById('proceed-refine')?.addEventListener('click', () => showStage(3));
+    document.getElementById('back-to-input')?.addEventListener('click', () => showStage(1));
+    
+    document.getElementById('generate-post')?.addEventListener('click', () => {
+        generatePost();
+        showStage(4);
+    });
+    document.getElementById('back-to-parse')?.addEventListener('click', () => showStage(2));
+    
+    document.getElementById('proceed-export')?.addEventListener('click', () => {
+        showStage(5);
+    });
+    document.getElementById('back-to-refine')?.addEventListener('click', () => showStage(3));
+    
+    document.getElementById('back-to-compose')?.addEventListener('click', () => showStage(4));
+    document.getElementById('start-new')?.addEventListener('click', () => showStage(1));
+
+    // Parser
+    function runParser() {
+        const rawText = (document.getElementById('raw-input') as HTMLTextAreaElement)?.value || '';
+        const sourceType = (document.getElementById('source-type') as HTMLSelectElement)?.value || 'pib';
+        
+        // Extract date
+        const dateMatch = rawText.match(/(\d{1,2}\s+\w+\s+\d{4}|\d{4}-\d{2}-\d{2})/i) || [];
+        const date = dateMatch[0] || 'Recent';
+        
+        // Extract location
+        const locationMatch = rawText.match(/(New Delhi|Mumbai|Chennai|Kolkata|Bengaluru|Hyderabad|Lucknow|Chandigarh)[,:\s]/i) || [];
+        const location = locationMatch[1] || 'India';
+        
+        // Extract headline (first non-empty line after potential source)
+        const lines = rawText.split('\n').filter(l => l.trim());
+        let headline = lines.find(l => l.length > 10 && l.length < 100) || 'News Update';
+        
+        // Extract source
+        let source = 'Press Release';
+        if (sourceType === 'pib') source = 'Press Information Bureau';
+        if (rawText.includes('Ministry')) {
+            const ministryMatch = rawText.match(/Ministry\s+of\s+[\w\s]+/i);
+            if (ministryMatch) source = ministryMatch[0];
+        }
+        
+        // Extract numbers and figures
+        const figures: string[] = [];
+        const numberMatches = rawText.matchAll(/Rs\.?\s*[\d,]+(?:\.\d+)?\s*(?:crore|cr|lakh|L|%)?|[\d,]+(?:\.\d+)?\s*(?:million|MT|GW|PS|cc|kmph|kg)/gi);
+        for (const match of numberMatches) {
+            if (match[0] && !figures.includes(match[0])) figures.push(match[0]);
+        }
+        
+        // Extract quote
+        const quoteMatch = rawText.match(/"([^"]{20,200})"/) || rawText.match(/'([^']{20,200})'/) || [];
+        const quote = quoteMatch[1] || '';
+        
+        // Update UI
+        const setVal = (id: string, val: string) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = val;
+        };
+        
+        setVal('extracted-source', source);
+        setVal('extracted-date', date);
+        setVal('extracted-location', location);
+        setVal('extracted-headline', headline);
+        
+        (document.getElementById('extracted-quote') as HTMLTextAreaElement).value = quote;
+        (document.getElementById('extracted-figures') as HTMLTextAreaElement).value = figures.slice(0, 5).map(f => `• ${f}`).join('\n');
+        (document.getElementById('extracted-context') as HTMLTextAreaElement).value = rawText.substring(0, 300) + '...';
+    }
+
+    // Generate Post
+    function generatePost() {
+        const title = (document.getElementById('refine-title') as HTMLInputElement)?.value || document.getElementById('extracted-headline')?.textContent || 'News Update';
+        const category = (document.getElementById('refine-category') as HTMLSelectElement)?.value || 'news';
+        const quote = (document.getElementById('extracted-quote') as HTMLTextAreaElement)?.value || '';
+        const figures = (document.getElementById('extracted-figures') as HTMLTextAreaElement)?.value || '';
+        const context = (document.getElementById('extracted-context') as HTMLTextAreaElement)?.value || '';
+        const date = document.getElementById('extracted-date')?.textContent || '';
+        const source = document.getElementById('extracted-source')?.textContent || '';
+        const format = (document.getElementById('refine-format') as HTMLSelectElement)?.value || 'article';
+        
+        // Update preview
+        document.getElementById('preview-title')!.textContent = title;
+        document.getElementById('preview-meta')!.textContent = `${category.charAt(0).toUpperCase() + category.slice(1)} • ${date}`;
+        
+        let content = '';
+        
+        if (format === 'brief') {
+            content = `
+<p><strong>Quick Take:</strong> ${context.substring(0, 150)}...</p>
+
+<h2>Key Points</h2>
+${figures.split('\n').map(f => `<li>${f.replace('• ', '')}</li>`).join('')}
+${quote ? `<blockquote class="preview-quote">"${quote}"</blockquote>` : ''}
+            `;
+        } else if (format === 'thread') {
+            content = `
+<p>🧵 Thread: ${title}</p>
+<p>${context.substring(0, 200)}...</p>
+
+${figures.split('\n').map((f, i) => `<p>${i + 1}. ${f.replace('• ', '')}</p>`).join('')}
+${quote ? `<blockquote class="preview-quote">"${quote}"</blockquote>` : ''}
+<p>${source} | ${date}</p>
+            `;
+        } else {
+            content = `
+${context ? `<p>${context.substring(0, 200)}...</p>` : ''}
+
+${quote ? `<blockquote class="preview-quote">"${quote}"</blockquote>` : ''}
+
+<h2>Key Highlights</h2>
+<ul>
+${figures.split('\n').map(f => `<li>${f.replace('• ', '')}</li>`).join('\n')}
+</ul>
+
+<p><em>Source: ${source} | ${date}</em></p>
+            `;
+        }
+        
+        document.getElementById('preview-content')!.innerHTML = content;
+        
+        // Generate Markdown
+        const markdown = generateMarkdown(title, category, date, source, quote, figures, context, format);
+        document.getElementById('markdown-output')!.textContent = markdown;
+    }
+
+    function generateMarkdown(title: string, category: string, date: string, source: string, quote: string, figures: string, context: string, format: string): string {
+        let md = `# ${title}\n\n`;
+        md += `*${category.charAt(0).toUpperCase() + category.slice(1)} • ${date}*\n\n`;
+        
+        if (context) md += `${context.substring(0, 200)}...\n\n`;
+        if (quote) md += `> "${quote}"\n\n`;
+        
+        if (figures) {
+            md += `## Key Highlights\n\n`;
+            figures.split('\n').forEach(f => {
+                if (f.trim()) md += `- ${f.replace('• ', '')}\n`;
+            });
+            md += '\n';
+        }
+        
+        md += `---\n\n`;
+        md += `*Source: ${source}*`;
+        
+        return md;
+    }
+
+    // Export Functions
+    document.getElementById('copy-markdown')?.addEventListener('click', () => {
+        const md = document.getElementById('markdown-output')?.textContent || '';
+        navigator.clipboard.writeText(md).then(() => {
+            const btn = document.getElementById('copy-markdown');
+            if (btn) {
+                btn.textContent = '✅ Copied!';
+                setTimeout(() => btn.textContent = '📋 Copy Markdown', 2000);
+            }
+        });
+    });
+
+    document.getElementById('download-md')?.addEventListener('click', () => {
+        const md = document.getElementById('markdown-output')?.textContent || '';
+        const title = document.getElementById('preview-title')?.textContent || 'post';
+        const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').substring(0, 50);
+        const blob = new Blob([md], { type: 'text/markdown' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${slug}.md`;
+        a.click();
+        URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('copy-html')?.addEventListener('click', () => {
+        const content = document.getElementById('preview-content')?.innerHTML || '';
+        const title = document.getElementById('preview-title')?.textContent || '';
+        const html = `<article>\n<h1>${title}</h1>\n${content}\n</article>`;
+        navigator.clipboard.writeText(html).then(() => {
+            const btn = document.getElementById('copy-html');
+            if (btn) {
+                btn.textContent = '✅ Copied!';
+                setTimeout(() => btn.textContent = '🌐 Copy HTML', 2000);
+            }
+        });
+    });
+
+    // Auto-save to localStorage
+    const saveInterval = setInterval(() => {
+        const rawInput = (document.getElementById('raw-input') as HTMLTextAreaElement)?.value;
+        if (rawInput) {
+            localStorage.setItem('pressfolio-draft', rawInput);
+        }
+    }, 5000);
+
+    // Restore draft
+    const savedDraft = localStorage.getItem('pressfolio-draft');
+    if (savedDraft) {
+        const input = document.getElementById('raw-input') as HTMLTextAreaElement;
+        if (input) input.value = savedDraft;
+    }
+</script>

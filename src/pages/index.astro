@@ -301,56 +301,311 @@ New Delhi: The Finance Ministry today announced...
     document.getElementById('back-to-compose')?.addEventListener('click', () => showStage(4));
     document.getElementById('start-new')?.addEventListener('click', () => showStage(1));
 
-    // Parser
+    // ===== IMPROVED PARSER =====
+    
     function runParser() {
         const rawText = (document.getElementById('raw-input') as HTMLTextAreaElement)?.value || '';
         const sourceType = (document.getElementById('source-type') as HTMLSelectElement)?.value || 'pib';
         
-        // Extract date
-        const dateMatch = rawText.match(/(\d{1,2}\s+\w+\s+\d{4}|\d{4}-\d{2}-\d{2})/i) || [];
-        const date = dateMatch[0] || 'Recent';
-        
-        // Extract location
-        const locationMatch = rawText.match(/(New Delhi|Mumbai|Chennai|Kolkata|Bengaluru|Hyderabad|Lucknow|Chandigarh)[,:\s]/i) || [];
-        const location = locationMatch[1] || 'India';
-        
-        // Extract headline (first non-empty line after potential source)
-        const lines = rawText.split('\n').filter(l => l.trim());
-        let headline = lines.find(l => l.length > 10 && l.length < 100) || 'News Update';
-        
-        // Extract source
-        let source = 'Press Release';
-        if (sourceType === 'pib') source = 'Press Information Bureau';
-        if (rawText.includes('Ministry')) {
-            const ministryMatch = rawText.match(/Ministry\s+of\s+[\w\s]+/i);
-            if (ministryMatch) source = ministryMatch[0];
+        if (!rawText.trim()) {
+            alert('Please paste a press release first!');
+            return;
         }
         
-        // Extract numbers and figures
-        const figures: string[] = [];
-        const numberMatches = rawText.matchAll(/Rs\.?\s*[\d,]+(?:\.\d+)?\s*(?:crore|cr|lakh|L|%)?|[\d,]+(?:\.\d+)?\s*(?:million|MT|GW|PS|cc|kmph|kg)/gi);
-        for (const match of numberMatches) {
-            if (match[0] && !figures.includes(match[0])) figures.push(match[0]);
-        }
+        // Clean text
+        const cleanText = rawText.replace(/\s+/g, ' ').trim();
         
-        // Extract quote
-        const quoteMatch = rawText.match(/"([^"]{20,200})"/) || rawText.match(/'([^']{20,200})'/) || [];
-        const quote = quoteMatch[1] || '';
+        // ===== 1. EXTRACT SOURCE/MINISTRY =====
+        let source = extractSource(cleanText, sourceType);
         
-        // Update UI
-        const setVal = (id: string, val: string) => {
-            const el = document.getElementById(id);
-            if (el) el.textContent = val;
-        };
+        // ===== 2. EXTRACT DATE =====
+        const date = extractDate(cleanText);
         
-        setVal('extracted-source', source);
-        setVal('extracted-date', date);
-        setVal('extracted-location', location);
-        setVal('extracted-headline', headline);
+        // ===== 3. EXTRACT LOCATION =====
+        const location = extractLocation(cleanText);
+        
+        // ===== 4. EXTRACT HEADLINE =====
+        const headline = extractHeadline(cleanText);
+        
+        // ===== 5. EXTRACT KEY QUOTE =====
+        const quote = extractQuote(cleanText);
+        
+        // ===== 6. EXTRACT KEY FIGURES =====
+        const figures = extractFigures(cleanText);
+        
+        // ===== 7. EXTRACT CONTEXT =====
+        const context = extractContext(cleanText, headline);
+        
+        // ===== UPDATE UI =====
+        document.getElementById('extracted-source')!.textContent = source;
+        document.getElementById('extracted-date')!.textContent = date;
+        document.getElementById('extracted-location')!.textContent = location;
+        document.getElementById('extracted-headline')!.textContent = headline;
         
         (document.getElementById('extracted-quote') as HTMLTextAreaElement).value = quote;
-        (document.getElementById('extracted-figures') as HTMLTextAreaElement).value = figures.slice(0, 5).map(f => `• ${f}`).join('\n');
-        (document.getElementById('extracted-context') as HTMLTextAreaElement).value = rawText.substring(0, 300) + '...';
+        (document.getElementById('extracted-figures') as HTMLTextAreaElement).value = figures.length > 0 ? figures.map(f => `• ${f}`).join('\n') : '';
+        (document.getElementById('extracted-context') as HTMLTextAreaElement).value = context;
+    }
+    
+    // ===== EXTRACT SOURCE/MINISTRY =====
+    function extractSource(text: string, sourceType: string): string {
+        // Check for Ministry pattern (PIB style)
+        const ministryPatterns = [
+            /Ministry\s+of\s+[\w\s&,]+?(?=\.|\n|Government|has|will|will)/gi,
+            /Department\s+of\s+[\w\s&,]+/gi,
+            /(?:Shri|Smt|Mr|Ms)\s+[\w\s]+\s+(?:said|stated|announced|added|mentioned)/gi,
+            /Press\s+Information\s+Bureau/gi,
+            /(?:Govt|Government)\s+of\s+India/gi,
+        ];
+        
+        for (const pattern of ministryPatterns) {
+            const match = text.match(pattern);
+            if (match && match[0].length > 5 && match[0].length < 100) {
+                return match[0].trim();
+            }
+        }
+        
+        // Check for company name at start
+        const companyPatterns = [
+            /(?:Company|Inc|Corp|Ltd|Private)\s+[\w\s]+/gi,
+            /[\w\s]+:\s*(?:New Delhi|Mumbai|Bengaluru)/gi,
+        ];
+        
+        for (const pattern of companyPatterns) {
+            const match = text.match(pattern);
+            if (match) return match[0].trim();
+        }
+        
+        // Default based on source type
+        const defaults: Record<string, string> = {
+            'pib': 'Press Information Bureau (PIB)',
+            'company': 'Company Press Release',
+            'ministerial': 'Ministerial Statement',
+            'other': 'Press Release'
+        };
+        
+        return defaults[sourceType] || 'Press Release';
+    }
+    
+    // ===== EXTRACT DATE =====
+    function extractDate(text: string): string {
+        const datePatterns = [
+            // PIB Style: "Posted On: 04 JAN 2023 3:45PM by PIB Delhi"
+            /Posted\s+On:?\s*(\d{1,2}\s+\w+\s+\d{4})/i,
+            // "New Delhi, Jan 4, 2023"
+            /(\d{1,2}\s+\w+\s+\d{4})/i,
+            // "January 4, 2023"
+            /(\w+\s+\d{1,2},?\s+\d{4})/i,
+            // ISO: "2023-01-04"
+            /(\d{4}-\d{2}-\d{2})/,
+            // "04/01/2023" or "04-01-2023"
+            /(\d{1,2}[-\/]\d{1,2}[-\/]\d{2,4})/,
+            // "Released on: 4th January 2023"
+            /Released\s+on:?\s*(\d{1,2}\s+\w+\s+\d{4})/i,
+            // "Date: 04-01-2023"
+            /Date:?\s*(\d{1,2}[-\/]\d{1,2}[-\/]\d{2,4})/i,
+        ];
+        
+        for (const pattern of datePatterns) {
+            const match = text.match(pattern);
+            if (match && match[1]) {
+                let date = match[1].trim();
+                // Convert to readable format
+                date = date.replace(/(\d{4})-(\d{2})-(\d{2})/, '$3-$2-$1');
+                return date;
+            }
+        }
+        
+        return new Date().toLocaleDateString('en-IN', { 
+            day: '2-digit', 
+            month: 'short', 
+            year: 'numeric' 
+        });
+    }
+    
+    // ===== EXTRACT LOCATION =====
+    function extractLocation(text: string): string {
+        const cities = [
+            'New Delhi', 'Mumbai', 'Bengaluru', 'Bangalore', 'Chennai', 
+            'Kolkata', 'Hyderabad', 'Pune', 'Ahmedabad', 'Jaipur',
+            'Lucknow', 'Chandigarh', 'Bhopal', 'Patna', 'Guwahati',
+            'New Delhi,', 'Mumbai,', 'Bengaluru,', 'Chennai,', 'Kolkata,'
+        ];
+        
+        for (const city of cities) {
+            const regex = new RegExp(`(${city})`, 'i');
+            const match = text.match(regex);
+            if (match) {
+                return match[1].replace(',', '');
+            }
+        }
+        
+        return 'India';
+    }
+    
+    // ===== EXTRACT HEADLINE =====
+    function extractHeadline(text: string): string {
+        const lines = text.split(/\n|\.\s+/).filter(l => l.trim());
+        
+        // Try to find headline patterns
+        const headlinePatterns = [
+            // After location: "New Delhi, Jan 4: The Finance Ministry..."
+            /(?:New Delhi|Mumbai|Bengaluru|Chennai|Kolkata)[,:\s]+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*[\s,]+(?:The\s+)?([A-Z][^.!?]{10,80})/i,
+            // Title Case line (likely headline)
+            /^([A-Z][a-zA-Z\s]{10,100})$/m,
+            // After "announces/announcement"
+            /(?:announces?|announcement|launches?|introduces?)\s+(?:the\s+)?([A-Z][^.!?\n]{15,100})/i,
+        ];
+        
+        for (const pattern of headlinePatterns) {
+            const match = text.match(pattern);
+            if (match && match[1]) {
+                let headline = match[1].trim();
+                headline = headline.replace(/\s+/g, ' ');
+                if (headline.length > 15 && headline.length < 150) {
+                    return headline;
+                }
+            }
+        }
+        
+        // Find the longest capitalized line that could be a headline
+        for (const line of lines.slice(0, 5)) {
+            const trimmed = line.trim();
+            if (trimmed.length > 20 && trimmed.length < 150) {
+                // Check if it looks like a headline (no lowercase at start)
+                if (/^[A-Z]/.test(trimmed) && !trimmed.includes(' said ') && !trimmed.includes(' stated ')) {
+                    return trimmed;
+                }
+            }
+        }
+        
+        return 'News Update';
+    }
+    
+    // ===== EXTRACT KEY QUOTE =====
+    function extractQuote(text: string): string {
+        // Find quoted text
+        const quotePatterns = [
+            /"([^"]{30,500})"/g,
+            /"([^"]{30,500})"/g,
+            /"([^"]{30,500})"/g,
+            /'([^']{30,500})'/g,
+            /«([^»]{30,500})»/g,
+        ];
+        
+        for (const pattern of quotePatterns) {
+            let match;
+            while ((match = pattern.exec(text)) !== null) {
+                const quote = match[1].trim();
+                // Filter out boilerplate quotes
+                if (quote.length > 30 && !quote.includes('PIB') && !quote.includes('Copying')) {
+                    return quote;
+                }
+            }
+        }
+        
+        // Find quotes attributed to officials
+        const attributionPatterns = [
+            /(?:Shri|Smt|Mr|Ms|Dr)\s+[\w\s]+(?:said|stated|announced|added|mentioned|observed):\s*[""]?([^"".!?\n]{50,300})/gi,
+            /(?:According to|As per)\s+[\w\s]+:\s*[""]?([^"".!?\n]{50,300})/gi,
+        ];
+        
+        for (const pattern of attributionPatterns) {
+            const match = text.match(pattern);
+            if (match && match[1]) {
+                return match[1].trim();
+            }
+        }
+        
+        return '';
+    }
+    
+    // ===== EXTRACT KEY FIGURES =====
+    function extractFigures(text: string): string[] {
+        const figures: Set<string> = new Set();
+        
+        // Rupee figures
+        const rupeePatterns = [
+            /Rs\.?\s*([\d,]+(?:\.\d+)?)\s*(?:crore|cr|Cr)/gi,
+            /Rs\.?\s*([\d,]+(?:\.\d+)?)\s*(?:lakh|L\/-|Lacs)/gi,
+            /₹\s*([\d,]+(?:\.\d+)?)/g,
+            /INR\s*([\d,]+(?:\.\d+)?)/gi,
+        ];
+        
+        // Percentage figures
+        const percentPatterns = [
+            /(\d+(?:\.\d+)?)\s*%/g,
+            /(\d+(?:\.\d+)?)\s*per\s*cent/gi,
+        ];
+        
+        // Capacity figures
+        const capacityPatterns = [
+            /([\d,]+)\s*(?:MW|MGW|GW|MW|megawatt|gigawatt)/gi,
+            /([\d,]+)\s*(?:MT|Million\s+Tonnes?|MMT)/gi,
+            /([\d,]+)\s*(?:Million|lakh|TH|Thousand)\s+(?:jobs|people|units?|people)/gi,
+        ];
+        
+        // Power/Engine specs
+        const specsPatterns = [
+            /([\d,]+)\s*(?:PS|HP|bhp|BHP)/gi,
+            /([\d,]+)\s*(?:cc|Cubic\s+Centimeters)/gi,
+            /([\d,]+)\s*(?:kmph|km\/h|kmph)/gi,
+            /([\d,]+)\s*(?:kg|kilograms)/gi,
+            /([\d,]+)\s*(?:km|kilometers)/gi,
+        ];
+        
+        const allPatterns = [...rupeePatterns, ...percentPatterns, ...capacityPatterns, ...specsPatterns];
+        
+        for (const pattern of allPatterns) {
+            let match;
+            while ((match = pattern.exec(text)) !== null) {
+                let figure = match[0].trim();
+                if (!figure.includes('PIB') && figure.length > 2) {
+                    figures.add(figure);
+                }
+            }
+        }
+        
+        // Filter and limit
+        const filteredFigures = Array.from(figures)
+            .filter(f => f.length > 2 && f.length < 50)
+            .slice(0, 10);
+        
+        return filteredFigures;
+    }
+    
+    // ===== EXTRACT CONTEXT =====
+    function extractContext(text: string, headline: string): string {
+        // Remove the headline from text
+        let contextText = text.replace(headline, '');
+        
+        // Remove boilerplate
+        const boilerplatePatterns = [
+            /This\s+is\s+with\s+reference.*$/gi,
+            /Copying\s+restricted.*$/gi,
+            /PIB\s+release.*$/gi,
+            /^(?:Shri|Smt|Mr|Ms)\s+[\w\s]+\s+(?:said|stated|added).*$/gim,
+            /(?:Posted\s+On|PIB\s+Delhi|Source\s+:).*$/gi,
+            /\*\*.*?\*\*/g,
+        ];
+        
+        for (const pattern of boilerplatePatterns) {
+            contextText = contextText.replace(pattern, '');
+        }
+        
+        // Find the main content paragraph
+        const paragraphs = contextText.split(/\n\n|\.\s+/).filter(p => p.trim().length > 50);
+        
+        for (const para of paragraphs) {
+            const trimmed = para.trim();
+            // Skip if it's too short, too long, or contains only numbers
+            if (trimmed.length > 50 && trimmed.length < 500 && /\D/.test(trimmed)) {
+                return trimmed;
+            }
+        }
+        
+        // Fallback: return first substantial paragraph
+        return paragraphs[0]?.trim().substring(0, 500) || 'Summary not available';
     }
 
     // Generate Post

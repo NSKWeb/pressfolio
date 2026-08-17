@@ -2,6 +2,12 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false;
 
+// NaraRouter Configuration
+// Sign up at https://nara.id for free API key
+// Get 7 Million FREE tokens per day!
+const NARA_API_URL = 'https://router.bynara.id/v1/chat/completions';
+const NARA_DEFAULT_MODEL = 'nara/nara-1-20251101'; // Default model on NaraRouter
+
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
@@ -14,7 +20,8 @@ export const POST: APIRoute = async ({ request }) => {
       figures, 
       context, 
       format = 'article',
-      apiKey 
+      apiKey,
+      model = NARA_DEFAULT_MODEL
     } = body;
 
     // Validate required fields
@@ -28,11 +35,11 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Check API key - use environment variable or provided key
-    const openaiKey = import.meta.env.OPENAI_API_KEY || apiKey;
+    const narakey = import.meta.env.NARA_API_KEY || apiKey;
     
-    if (!openaiKey) {
+    if (!narakey) {
       return new Response(JSON.stringify({
-        error: 'API key not configured. Please set OPENAI_API_KEY in Vercel environment variables.'
+        error: 'API key not configured. Please get your free NaraRouter API key from https://nara.id and set NARA_API_KEY in environment variables.'
       }), {
         status: 401,
         headers: { 'Content-Type': 'application/json' }
@@ -107,15 +114,15 @@ Create a well-structured blog article with:
 Write in a professional but accessible tone. Use markdown formatting. Make it approximately 400-600 words.`;
     }
 
-    // Call OpenAI API
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    // Call NaraRouter API (OpenAI-compatible)
+    const response = await fetch(NARA_API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${openaiKey}`
+        'Authorization': `Bearer ${narakey}`
       },
       body: JSON.stringify({
-        model: 'gpt-3.5-turbo', // Fast and cost-effective
+        model: model,
         messages: [
           {
             role: 'system',
@@ -132,12 +139,12 @@ Write in a professional but accessible tone. Use markdown formatting. Make it ap
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      console.error('OpenAI API error:', errorData);
+      const errorData = await response.json().catch(() => ({}));
+      console.error('NaraRouter API error:', errorData);
       
-      if (response.status === 401) {
+      if (response.status === 401 || response.status === 403) {
         return new Response(JSON.stringify({
-          error: 'Invalid API key. Please check your OPENAI_API_KEY.'
+          error: 'Invalid NaraRouter API key. Please get a free key from https://nara.id'
         }), {
           status: 401,
           headers: { 'Content-Type': 'application/json' }
@@ -153,7 +160,7 @@ Write in a professional but accessible tone. Use markdown formatting. Make it ap
     }
 
     const data = await response.json();
-    const generatedContent = data.choices[0]?.message?.content || '';
+    const generatedContent = data.choices?.[0]?.message?.content || '';
 
     if (!generatedContent) {
       return new Response(JSON.stringify({
@@ -168,7 +175,9 @@ Write in a professional but accessible tone. Use markdown formatting. Make it ap
       success: true,
       content: generatedContent,
       format: format,
-      wordCount: generatedContent.split(/\s+/).length
+      wordCount: generatedContent.split(/\s+/).length,
+      provider: 'NaraRouter',
+      tokensUsed: data.usage?.total_tokens || 0
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
@@ -188,8 +197,10 @@ Write in a professional but accessible tone. Use markdown formatting. Make it ap
 // Handle GET requests
 export const GET: APIRoute = async () => {
   return new Response(JSON.stringify({
-    message: 'PressFolio AI Generation API',
+    message: 'PressFolio AI Generation API (Powered by NaraRouter)',
     version: '1.0',
+    provider: 'NaraRouter - 7M Free Tokens Daily!',
+    signup: 'https://nara.id',
     endpoints: {
       POST: '/api/generate - Generate blog content using AI',
       body: {
@@ -200,7 +211,8 @@ export const GET: APIRoute = async () => {
         quote: 'string (optional)',
         figures: 'string (optional)',
         context: 'string (required)',
-        format: 'article | brief | thread (default: article)'
+        format: 'article | brief | thread (default: article)',
+        model: 'string (optional, default: nara/nara-1-20251101)'
       }
     }
   }), {

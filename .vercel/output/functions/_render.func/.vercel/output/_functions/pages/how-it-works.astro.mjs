@@ -1,0 +1,24 @@
+import { c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_C8NFGx30.mjs';
+import 'kleur/colors';
+import { $ as $$BaseLayout, a as $$Header, b as $$Footer } from '../chunks/Footer_X3ew3aYa.mjs';
+export { renderers } from '../renderers.mjs';
+
+const $$HowItWorks = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, { "title": "How It Works", "description": "Learn how PressFolio transforms press releases into blog posts." }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "Header", $$Header, { "currentPage": "/how-it-works" })} ${maybeRenderHead()}<main class="container"> <div style="text-align: center; padding: 3rem 0;"> <h1>How It <span style="color: var(--accent);">Works</span></h1> <p class="hero-tagline">Transform any press release into a blog post in 5 simple steps.</p> </div> <!-- Steps --> <div class="steps-grid"> <div class="step-card"> <div class="step-number">1</div> <div class="step-content"> <h3>📥 Paste Your Press Release</h3> <p>Copy the text from any official press release - PIB India, company announcements, ministerial statements - and paste it into PressFolio. Select the source type for better parsing.</p> </div> </div> <div class="step-card"> <div class="step-number">2</div> <div class="step-content"> <h3>🔍 Auto-Parse</h3> <p>Our smart parser automatically extracts the key information: source ministry, date, location, headline, key quote, and important figures. No manual work needed.</p> </div> </div> <div class="step-card"> <div class="step-number">3</div> <div class="step-content"> <h3>✏️ Refine & Edit</h3> <p>Review the extracted parameters and make any adjustments. Choose your preferred blog format: full article, quick brief, or tweet thread style. Add your own intro if needed.</p> </div> </div> <div class="step-card"> <div class="step-number">4</div> <div class="step-content"> <h3>✍️ Generate Blog Post</h3> <p>Click generate and watch your beautifully formatted blog post come to life. See a live preview with proper headings, lists, quotes, and styling.</p> </div> </div> <div class="step-card"> <div class="step-number">5</div> <div class="step-content"> <h3>📤 Export & Share</h3> <p>Copy as Markdown, download as a .md file, or copy as HTML. Your blog post is ready to publish on any platform - WordPress, Medium, Ghost, or your own site.</p> </div> </div> </div> <!-- Ad --> <div class="ad-placeholder leaderboard">📢 AD SPACE</div> <!-- Features --> <div style="text-align: center; padding: 2rem 0;"> <h2 style="font-size: 2rem; margin-bottom: 2rem;">Why Press<span style="color: var(--accent);">Folio</span>?</h2> </div> <div class="features-grid"> <div class="feature-card"> <div class="feature-icon">⚡</div> <h3>Lightning Fast</h3> <p>No signup required. Paste, parse, and export in seconds.</p> </div> <div class="feature-card"> <div class="feature-icon">🔒</div> <h3>100% Private</h3> <p>All processing happens in your browser. No data is sent to any server.</p> </div> <div class="feature-card"> <div class="feature-icon">📝</div> <h3>Multiple Formats</h3> <p>Generate news articles, quick briefs, or tweet threads from the same input.</p> </div> <div class="feature-card"> <div class="feature-icon">🎨</div> <h3>Clean Output</h3> <p>Well-structured Markdown that's easy to style and publish anywhere.</p> </div> </div> <!-- CTA --> <div style="text-align: center; padding: 3rem 0;"> <a href="/" class="btn btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">
+🚀 Try It Now →
+</a> </div> </main> ${renderComponent($$result2, "Footer", $$Footer, {})} ` })}`;
+}, "/workspace/pressfolio/src/pages/how-it-works.astro", void 0);
+
+const $$file = "/workspace/pressfolio/src/pages/how-it-works.astro";
+const $$url = "/how-it-works";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+    __proto__: null,
+    default: $$HowItWorks,
+    file: $$file,
+    url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

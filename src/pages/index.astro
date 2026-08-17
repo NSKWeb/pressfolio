@@ -58,13 +58,18 @@ import Footer from '../components/Footer.astro';
                     <textarea 
                         id="raw-input" 
                         class="form-textarea raw-input" 
-                        placeholder="Paste the press release text here...
+                        placeholder="Paste the press release text here..."
+                    >Ministry of New and Renewable Energy
 
-Example:
-Ministry of Finance
-Government of India announces new tax reforms
-New Delhi: The Finance Ministry today announced...
-"></textarea>
+Government of India approves National Green Hydrogen Mission with an outlay of Rs. 19,744 crore.
+
+Posted On: 04 JAN 2023 3:45PM by PIB Delhi
+
+New Delhi: The Union Cabinet, chaired by Prime Minister Shri Narendra Modi, has approved the National Green Hydrogen Mission. The initial outlay for the Mission will be Rs. 19,744 crore, including an outlay of Rs. 17,490 crore for the SIGHT programme, Rs. 1,466 crore for pilot projects, Rs. 400 crore for R&D, and Rs. 388 crore towards other Mission components.
+
+"The National Green Hydrogen Mission will place India at the forefront of clean energy transition, reducing fossil fuel imports and creating over six lakh jobs by 2030," Union Minister Anurag Thakur stated during the briefing.
+
+The Mission aims to deliver an annual production of 5 MMT (Million Metric Tonnes) of Green Hydrogen by 2030, with an associated renewable energy capacity addition of about 125 GW. It will bring over Rs. 8 lakh crore in total investments and abate nearly 50 MMT of annual greenhouse gas emissions.</textarea>
                 </div>
 
                 <div class="form-group">
@@ -161,7 +166,7 @@ New Delhi: The Finance Ministry today announced...
 
                 <div class="form-group">
                     <label class="form-label">Intro Paragraph</label>
-                    <textarea id="refine-intro" class="form-textarea" style="min-height: 120px;" placeholder="Write an engaging intro..."></textarea>
+                    <textarea id="refine-intro" class="form-textarea" style="min-height: 120px;" placeholder="Auto-generated from parsing, or write your own intro..."></textarea>
                 </div>
 
                 <div class="form-group">
@@ -337,14 +342,42 @@ New Delhi: The Finance Ministry today announced...
         const context = extractContext(cleanText, headline);
         
         // ===== UPDATE UI =====
-        document.getElementById('extracted-source')!.textContent = source;
-        document.getElementById('extracted-date')!.textContent = date;
-        document.getElementById('extracted-location')!.textContent = location;
-        document.getElementById('extracted-headline')!.textContent = headline;
+        const setText = (id: string, val: string) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = val || 'Not detected';
+        };
         
-        (document.getElementById('extracted-quote') as HTMLTextAreaElement).value = quote;
-        (document.getElementById('extracted-figures') as HTMLTextAreaElement).value = figures.length > 0 ? figures.map(f => `• ${f}`).join('\n') : '';
-        (document.getElementById('extracted-context') as HTMLTextAreaElement).value = context;
+        const setValue = (id: string, val: string) => {
+            const el = document.getElementById(id) as HTMLTextAreaElement;
+            if (el) el.value = val || '';
+        };
+        
+        setText('extracted-source', source);
+        setText('extracted-date', date);
+        setText('extracted-location', location);
+        setText('extracted-headline', headline);
+        
+        setValue('extracted-quote', quote);
+        setValue('extracted-figures', figures.length > 0 ? figures.map(f => `• ${f}`).join('\n') : '');
+        setValue('extracted-context', context);
+        
+        // Also update Stage 3 fields for better workflow
+        setValue('refine-title', headline !== 'News Update' ? headline : '');
+        
+        // Auto-generate intro from context
+        if (context && context !== 'Summary not available') {
+            const introParagraph = `The ${source} today announced ${headline.toLowerCase()}. ${context.substring(0, 200)}...`;
+            setValue('refine-intro', introParagraph);
+        }
+        
+        // Show success message
+        const parseBtn = document.getElementById('parse-btn');
+        if (parseBtn) {
+            parseBtn.textContent = '✅ Parsed Successfully!';
+            setTimeout(() => {
+                parseBtn.textContent = '🔍 Run Auto-Parse →';
+            }, 2000);
+        }
     }
     
     // ===== EXTRACT SOURCE/MINISTRY =====
@@ -484,13 +517,13 @@ New Delhi: The Finance Ministry today announced...
     
     // ===== EXTRACT KEY QUOTE =====
     function extractQuote(text: string): string {
-        // Find quoted text
+        // Find quoted text with various quote styles
         const quotePatterns = [
-            /"([^"]{30,500})"/g,
-            /"([^"]{30,500})"/g,
-            /"([^"]{30,500})"/g,
-            /'([^']{30,500})'/g,
-            /«([^»]{30,500})»/g,
+            /"([^"]{20,300})"/g,
+            /"([^"]{20,300})"/g,
+            /'([^']{20,300})'/g,
+            /«([^»]{20,300})»/g,
+            /"([^"]{20,300})"/g,
         ];
         
         for (const pattern of quotePatterns) {
@@ -498,7 +531,7 @@ New Delhi: The Finance Ministry today announced...
             while ((match = pattern.exec(text)) !== null) {
                 const quote = match[1].trim();
                 // Filter out boilerplate quotes
-                if (quote.length > 30 && !quote.includes('PIB') && !quote.includes('Copying')) {
+                if (quote.length > 20 && !quote.includes('PIB') && !quote.includes('Copying') && !quote.includes('http')) {
                     return quote;
                 }
             }
@@ -506,14 +539,24 @@ New Delhi: The Finance Ministry today announced...
         
         // Find quotes attributed to officials
         const attributionPatterns = [
-            /(?:Shri|Smt|Mr|Ms|Dr)\s+[\w\s]+(?:said|stated|announced|added|mentioned|observed):\s*[""]?([^"".!?\n]{50,300})/gi,
-            /(?:According to|As per)\s+[\w\s]+:\s*[""]?([^"".!?\n]{50,300})/gi,
+            /(?:"([^"]{20,300})")/gi,
+            /(?:stated|announced|said|added|mentioned|observed|noted)\s*[,:]?\s*(?:"([^"]{20,300})")/gi,
+            /(?:Shri|Smt|Mr|Ms|Dr)\s+[\w\s]+(?::|,)\s*(?:"([^"]{20,300})")/gi,
         ];
         
         for (const pattern of attributionPatterns) {
             const match = text.match(pattern);
             if (match && match[1]) {
-                return match[1].trim();
+                const quote = match[1].trim();
+                if (quote.length > 20) return quote;
+            }
+        }
+        
+        // Try to find a long descriptive sentence as fallback
+        const sentences = text.match(/[^.!?]+[.!?]/g) || [];
+        for (const sentence of sentences) {
+            if (sentence.length > 100 && sentence.includes('will') || sentence.includes('aims') || sentence.includes('targets')) {
+                return sentence.trim();
             }
         }
         
@@ -522,56 +565,106 @@ New Delhi: The Finance Ministry today announced...
     
     // ===== EXTRACT KEY FIGURES =====
     function extractFigures(text: string): string[] {
-        const figures: Set<string> = new Set();
+        const figures: string[] = [];
+        const seen = new Set<string>();
         
-        // Rupee figures
-        const rupeePatterns = [
-            /Rs\.?\s*([\d,]+(?:\.\d+)?)\s*(?:crore|cr|Cr)/gi,
-            /Rs\.?\s*([\d,]+(?:\.\d+)?)\s*(?:lakh|L\/-|Lacs)/gi,
-            /₹\s*([\d,]+(?:\.\d+)?)/g,
-            /INR\s*([\d,]+(?:\.\d+)?)/gi,
-        ];
-        
-        // Percentage figures
-        const percentPatterns = [
-            /(\d+(?:\.\d+)?)\s*%/g,
-            /(\d+(?:\.\d+)?)\s*per\s*cent/gi,
-        ];
-        
-        // Capacity figures
-        const capacityPatterns = [
-            /([\d,]+)\s*(?:MW|MGW|GW|MW|megawatt|gigawatt)/gi,
-            /([\d,]+)\s*(?:MT|Million\s+Tonnes?|MMT)/gi,
-            /([\d,]+)\s*(?:Million|lakh|TH|Thousand)\s+(?:jobs|people|units?|people)/gi,
-        ];
-        
-        // Power/Engine specs
-        const specsPatterns = [
-            /([\d,]+)\s*(?:PS|HP|bhp|BHP)/gi,
-            /([\d,]+)\s*(?:cc|Cubic\s+Centimeters)/gi,
-            /([\d,]+)\s*(?:kmph|km\/h|kmph)/gi,
-            /([\d,]+)\s*(?:kg|kilograms)/gi,
-            /([\d,]+)\s*(?:km|kilometers)/gi,
-        ];
-        
-        const allPatterns = [...rupeePatterns, ...percentPatterns, ...capacityPatterns, ...specsPatterns];
-        
-        for (const pattern of allPatterns) {
-            let match;
-            while ((match = pattern.exec(text)) !== null) {
-                let figure = match[0].trim();
-                if (!figure.includes('PIB') && figure.length > 2) {
-                    figures.add(figure);
-                }
+        // Rupee figures - match full pattern
+        const rupeeRegex = /(?:Rs\.?|₹|INR)\s*([\d,]+(?:\.\d+)?)\s*(?:crore|cr|Cr|lakh|L|L\/-|Lacs)?/gi;
+        let match;
+        while ((match = rupeeRegex.exec(text)) !== null) {
+            let val = match[1].replace(/,/g, '');
+            let suffix = '';
+            // Find the suffix that was matched
+            const afterMatch = text.slice(match.index + match[0].length);
+            const suffixMatch = afterMatch.match(/^(?:\s*(?:crore|cr|Cr|lakh|L|L\/-|Lacs)\b)?/i);
+            if (suffixMatch && suffixMatch[0]) suffix = suffixMatch[0].trim();
+            
+            let figure = suffix ? `₹${parseFloat(val).toLocaleString('en-IN')} ${suffix}` : `₹${parseFloat(val).toLocaleString('en-IN')}`;
+            
+            if (!seen.has(figure)) {
+                seen.add(figure);
+                figures.push(figure);
             }
         }
         
-        // Filter and limit
-        const filteredFigures = Array.from(figures)
-            .filter(f => f.length > 2 && f.length < 50)
-            .slice(0, 10);
+        // Percentage
+        const percentRegex = /(\d+(?:\.\d+)?)\s*(?:%|per\s*cent)/gi;
+        while ((match = percentRegex.exec(text)) !== null) {
+            let figure = `${match[1]}%`;
+            if (!seen.has(figure)) {
+                seen.add(figure);
+                figures.push(figure);
+            }
+        }
         
-        return filteredFigures;
+        // Capacity - GW/MW
+        const gwRegex = /([\d,]+)\s*(?:GW|MW|megawatt|gigawatt)/gi;
+        while ((match = gwRegex.exec(text)) !== null) {
+            let val = match[1].replace(/,/g, '');
+            let unit = match[0].replace(/[\d,]/g, '').trim();
+            let figure = `${parseFloat(val).toLocaleString('en-IN')} ${unit.toUpperCase()}`;
+            if (!seen.has(figure)) {
+                seen.add(figure);
+                figures.push(figure);
+            }
+        }
+        
+        // MMT/Million Tonnes
+        const mmtRegex = /([\d,]+)\s*(?:MMT|Million\s*Tonnes?|MT|million)/gi;
+        while ((match = mmtRegex.exec(text)) !== null) {
+            let val = match[1].replace(/,/g, '');
+            let unit = match[0].replace(/[\d,]/g, '').trim();
+            let figure = `${parseFloat(val).toLocaleString('en-IN')} ${unit.toUpperCase()}`;
+            if (!seen.has(figure)) {
+                seen.add(figure);
+                figures.push(figure);
+            }
+        }
+        
+        // Jobs/People
+        const jobsRegex = /([\d,]+)\s*(?:lakh|million|thousand|TH)?\s*(?:jobs|people)/gi;
+        while ((match = jobsRegex.exec(text)) !== null) {
+            let figure = match[0].trim();
+            if (!seen.has(figure) && figure.length < 30) {
+                seen.add(figure);
+                figures.push(figure);
+            }
+        }
+        
+        // Power - PS/HP
+        const psRegex = /([\d,]+)\s*(?:PS|HP|bhp|BHP)/gi;
+        while ((match = psRegex.exec(text)) !== null) {
+            let val = match[1].replace(/,/g, '');
+            let figure = `${val} ${match[0].replace(/[\d,]/g, '').trim()}`;
+            if (!seen.has(figure)) {
+                seen.add(figure);
+                figures.push(figure);
+            }
+        }
+        
+        // CC
+        const ccRegex = /([\d,]+)\s*(?:cc|CC)/gi;
+        while ((match = ccRegex.exec(text)) !== null) {
+            let val = match[1].replace(/,/g, '');
+            let figure = `${val} cc`;
+            if (!seen.has(figure)) {
+                seen.add(figure);
+                figures.push(figure);
+            }
+        }
+        
+        // Investment - Lakh Crore
+        const investRegex = /Rs\.?\s*([\d,]+)\s*(?:lakh|lakhs)\s*(?:crore|crores?)?/gi;
+        while ((match = investRegex.exec(text)) !== null) {
+            let val = match[1].replace(/,/g, '');
+            let figure = `₹${parseFloat(val).toLocaleString('en-IN')} lakh crore`;
+            if (!seen.has(figure)) {
+                seen.add(figure);
+                figures.push(figure);
+            }
+        }
+        
+        return figures.slice(0, 10);
     }
     
     // ===== EXTRACT CONTEXT =====
@@ -587,6 +680,8 @@ New Delhi: The Finance Ministry today announced...
             /^(?:Shri|Smt|Mr|Ms)\s+[\w\s]+\s+(?:said|stated|added).*$/gim,
             /(?:Posted\s+On|PIB\s+Delhi|Source\s+:).*$/gi,
             /\*\*.*?\*\*/g,
+            /Ministry\s+of\s+[\w\s&,\.]+/gi,
+            /Government\s+of\s+India.*$/gim,
         ];
         
         for (const pattern of boilerplatePatterns) {

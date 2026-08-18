@@ -89,7 +89,7 @@ Create a Twitter thread with:
 
 Format each tweet with numbering: "1/" and use relevant emojis. Keep each tweet under 280 characters where possible. Use markdown.`;
     } else {
-      // Full article format
+      // Full article format - DETAILED
       prompt = `You are a professional journalist and content writer. Transform this press release into a detailed, engaging blog article.
 
 SOURCE: ${source}
@@ -101,17 +101,38 @@ KEY FIGURES:
 ${figures || 'Not available'}
 CONTEXT: ${context}
 
-Create a well-structured blog article with:
-1. Catchy headline
-2. Engaging intro paragraph (who, what, when, where, why)
-3. 2-3 detailed body sections with subheadings
-4. Key quote highlighted
-5. Key figures in bullet points
-6. Impact/significance paragraph
-7. Source attribution
-8. Related tags suggestion
+Create a comprehensive, well-structured blog article with:
 
-Write in a professional but accessible tone. Use markdown formatting. Make it approximately 400-600 words.`;
+## HEADLINE
+A compelling, SEO-friendly headline (H1)
+
+## INTRO (2-3 paragraphs)
+- Hook sentence to grab attention
+- Who, what, when, where, why
+- Why this matters to readers
+
+## BODY SECTIONS (3-4 detailed sections with H2 subheadings)
+Each section should have 2-3 paragraphs with:
+- Key facts and details
+- Supporting information
+- Context and background
+
+## KEY QUOTE (highlighted)
+Include the key quote with attribution
+
+## KEY FIGURES/DATA
+Bullet points of important numbers or statistics
+
+## IMPACT & SIGNIFICANCE
+What this means for the industry/audience
+
+## CONCLUSION
+Summary and future outlook
+
+## SOURCE ATTRIBUTION
+Original source credit
+
+Write in a professional but engaging tone. Use markdown formatting. Target: 600-900 words. Make it feel like a real news blog post, NOT a summary.`;
     }
 
     // Call NaraRouter API (OpenAI-compatible)
@@ -134,7 +155,7 @@ Write in a professional but accessible tone. Use markdown formatting. Make it ap
           }
         ],
         temperature: 0.7,
-        max_tokens: 1500
+        max_tokens: 2500
       })
     });
 

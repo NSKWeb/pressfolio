@@ -89,50 +89,35 @@ Create a Twitter thread with:
 
 Format each tweet with numbering: "1/" and use relevant emojis. Keep each tweet under 280 characters where possible. Use markdown.`;
     } else {
-      // Full article format - DETAILED
-      prompt = `You are a professional journalist and content writer. Transform this press release into a detailed, engaging blog article.
+      // Simple article format - like basic mode but AI-enhanced
+      prompt = `Write a simple, clean blog post from this press release.
 
+TITLE: ${title}
 SOURCE: ${source}
 DATE: ${date}
 LOCATION: ${location}
-TITLE: ${title}
 KEY QUOTE: ${quote || 'Not available'}
-KEY FIGURES:
-${figures || 'Not available'}
+KEY FIGURES: ${figures || 'Not available'}
 CONTEXT: ${context}
 
-Create a comprehensive, well-structured blog article with:
+Write in this format:
 
-## HEADLINE
-A compelling, SEO-friendly headline (H1)
+## ${title}
 
-## INTRO (2-3 paragraphs)
-- Hook sentence to grab attention
-- Who, what, when, where, why
-- Why this matters to readers
+[Short intro paragraph about the news]
 
-## BODY SECTIONS (3-4 detailed sections with H2 subheadings)
-Each section should have 2-3 paragraphs with:
-- Key facts and details
-- Supporting information
-- Context and background
+[Main content - 2-3 short paragraphs]
 
-## KEY QUOTE (highlighted)
-Include the key quote with attribution
+> "${quote || 'Key quote from the source'}"
 
-## KEY FIGURES/DATA
-Bullet points of important numbers or statistics
+**Key Points:**
+- [Bullet point 1]
+- [Bullet point 2]
+- [Bullet point 3]
 
-## IMPACT & SIGNIFICANCE
-What this means for the industry/audience
+Source: ${source} | ${date}
 
-## CONCLUSION
-Summary and future outlook
-
-## SOURCE ATTRIBUTION
-Original source credit
-
-Write in a professional but engaging tone. Use markdown formatting. Target: 600-900 words. Make it feel like a real news blog post, NOT a summary.`;
+Keep it simple, clean, and readable. 200-400 words only. No complex structure needed.`;
     }
 
     // Call NaraRouter API (OpenAI-compatible)
@@ -155,7 +140,7 @@ Write in a professional but engaging tone. Use markdown formatting. Target: 600-
           }
         ],
         temperature: 0.7,
-        max_tokens: 2500
+        max_tokens: 1200
       })
     });
 

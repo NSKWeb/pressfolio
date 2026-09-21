@@ -1,0 +1,134 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import { articleSchema, breadcrumbSchema } from '../../schema';
+
+const meta = {
+    title: 'How to Convert a Press Release into a Blog Post',
+    description:
+        'A step-by-step walkthrough of converting a press release into a blog post: what to preserve, how to restructure the opening, and how to export the result.',
+    path: '/blog/how-to-convert-a-press-release-into-a-blog-post',
+    date: '2026-02-10',
+};
+
+const faqs = [
+    {
+        question: 'How long does it take to convert a press release into a blog post?',
+        answer:
+            'With PressFolio the mechanical work takes about three minutes. Budget another five to ten minutes for editorial review, adding context your readers need, and checking the figures against the original release.',
+    },
+    {
+        question: 'Should the blog post keep the original headline?',
+        answer:
+            'Rarely. Release headlines are written to be scanned by journalists and often carry the dateline. Rewrite the headline as a promise to the reader, and keep the release headline as your page title only if it is already clear and specific.',
+    },
+    {
+        question: 'What do I do with the quote in the release?',
+        answer:
+            'Keep it, attribute it fully, and place it after the explanation of what changed. A quote is evidence, not an opening. Make sure the speaker’s name and title match the release exactly.',
+    },
+];
+---
+
+<GuideLayout
+    eyebrow="Guide"
+    heading={meta.title}
+    intro={meta.description}
+    breadcrumb={[
+        { name: 'Home', path: '/' },
+        { name: 'Blog', path: '/blog' },
+        { name: meta.title, path: meta.path },
+    ]}
+    faqs={faqs}
+    schema={[articleSchema({ headline: meta.title, description: meta.description, path: meta.path, datePublished: meta.date })]}
+>
+    <p>
+        Converting a press release into a blog post is mostly a preservation exercise. The facts already exist; the
+        work is moving them into an order a reader can follow without losing a figure, a name, or a date along the
+        way. Here is the full process, stage by stage.
+    </p>
+
+    <h2>Step 1: Separate facts from framing</h2>
+    <p>
+        Before you rewrite anything, mark the load-bearing facts in the release: the issuing organisation, the date,
+        the location, the specific change being announced, the quoted speaker and their title, and every number. Those
+        cannot change. The framing around them — the opening dateline, “FOR IMMEDIATE RELEASE”, the closing boilerplate
+        — can and should go.
+    </p>
+    <p>
+        This is the step people skip, and it is why converted posts drift. If you rewrite first and check numbers
+        later, you will have already invented context to support a figure you misread.
+    </p>
+
+    <h2>Step 2: Parse the release</h2>
+    <p>
+        Paste the text into <a href="/">the PressFolio converter</a> and pick the source type. The parser extracts:
+    </p>
+    <ul>
+        <li>Source or issuing organisation</li>
+        <li>Date and dateline</li>
+        <li>Location</li>
+        <li>Headline</li>
+        <li>Key quote with speaker</li>
+        <li>Figures — budgets, percentages, volumes, deadlines</li>
+        <li>Context paragraphs</li>
+    </ul>
+
+    <h2>Step 3: Rewrite the opening</h2>
+    <p>
+        A release opens with where and when. A blog post should open with what changed and why the reader should care.
+        Compare:
+    </p>
+    <pre><code>Release:  NEW DELHI, 4 January — The Union Cabinet, chaired by the Prime Minister,
+          has approved the mission with an initial outlay of Rs. 19,744 crore.
+
+Post:     India has approved a Rs. 19,744 crore green hydrogen mission. The
+          programme targets 5 MMT of annual production by 2030 and is expected
+          to create over six lakh jobs.</code></pre>
+    <p>
+        The second version leads with the change, keeps both numbers intact, and gives the reader a reason to continue.
+        Nothing was invented — the order changed.
+    </p>
+
+    <h2>Step 4: Add the context your readers need</h2>
+    <p>
+        A release assumes the reader knows the background. Your blog readers may not. Add one short paragraph that
+        explains the prior situation: what the policy replaced, what the previous quarter looked like, why the timing
+        matters. Keep it to what you can support with the release or an authoritative source.
+    </p>
+
+    <h2>Step 5: Structure the body</h2>
+    <ul>
+        <li>One idea per section, with a descriptive heading.</li>
+        <li>Figures as a short list, not buried mid-sentence.</li>
+        <li>The quote placed after the claim it supports, fully attributed.</li>
+        <li>Short paragraphs — two to three sentences each.</li>
+    </ul>
+
+    <h2>Step 6: Fix the technical layer</h2>
+    <p>
+        Title tag, meta description, a single H1, descriptive headings, and accurate dates. The
+        <a href="/blog/press-release-seo-checklist">press release SEO checklist</a> covers all fifteen checks. Doing
+        this before export is faster than fixing it in your CMS.
+    </p>
+
+    <h2>Step 7: Export and publish</h2>
+    <p>
+        Export as Markdown to paste into a static site, Ghost, or a docs folder; download a <code>.md</code> file to
+        keep an archive copy; or copy HTML straight into WordPress, Medium, or your CMS. For the same announcement in
+        additional formats, see <a href="/pr-content-repurposing">PR content repurposing</a>.
+    </p>
+
+    <h2>Common mistakes</h2>
+    <table>
+        <thead>
+            <tr><th>Mistake</th><th>Consequence</th><th>Fix</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Keeping the dateline as the opening line</td><td>Readers bounce in the first sentence</td><td>Lead with the change</td></tr>
+            <tr><td>Rounding or paraphrasing figures</td><td>Factual error in a public post</td><td>Copy numbers verbatim</td></tr>
+            <tr><td>Dropping the speaker’s title</td><td>Quote loses credibility</td><td>Attribute fully from the release</td></tr>
+            <tr><td>Leaving “about the company” boilerplate</td><td>Padded, low-value ending</td><td>Delete or move into the body</td></tr>
+            <tr><td>Publishing without a meta description</td><td>Weak search and social snippets</td><td>Write a 120–155 character description</td></tr>
+        </tbody>
+    </table>
+</GuideLayout>

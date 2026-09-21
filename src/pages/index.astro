@@ -2,16 +2,58 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ContentSections from '../components/ContentSections.astro';
+import { SITE } from '../config';
+import { faqSchema, howToSchema } from '../schema';
+
+const faqs = [
+    {
+        question: 'How do I convert a press release into a blog post?',
+        answer:
+            'Paste the press release text into PressFolio, run the auto-parse to extract the source, date, location, headline, quote, and figures, refine those fields, then generate and export the post. The whole flow takes about three minutes.',
+    },
+    {
+        question: 'Is PressFolio free to use?',
+        answer:
+            'Yes. Basic formatting runs entirely in your browser and needs no account or API key. AI enhancement uses a free NaraRouter API key that you can sign up for at nara.id.',
+    },
+    {
+        question: 'What export formats does PressFolio support?',
+        answer:
+            'You can copy Markdown, download a .md file, copy clean HTML for WordPress, Medium, or Ghost, or generate a tweet thread from the same release.',
+    },
+    {
+        question: 'Does PressFolio work with PIB and government releases?',
+        answer:
+            'Yes. PressFolio supports Press Information Bureau (PIB) releases, company press releases, ministerial statements, and other announcement formats, with parsing tuned to extract official sources and figures.',
+    },
+];
 ---
 
-<BaseLayout title="Press to Blog Converter" description="Transform press releases into beautiful blog posts instantly.">
+<BaseLayout
+    title="Press Release to Blog Post Converter"
+    schema={[
+        faqSchema(faqs),
+        howToSchema([
+            { name: 'Paste your press release', text: 'Copy the text from any official press release into the input stage and pick the source type.' },
+            { name: 'Auto-parse the key parameters', text: 'PressFolio extracts the source, date, location, headline, key quote, and figures from the release.' },
+            { name: 'Refine and edit', text: 'Adjust the extracted fields, choose article, brief, or tweet thread format, and opt into AI enhancement.' },
+            { name: 'Generate the blog post', text: 'Preview the formatted post with headings, lists, quotes, and styling before publishing.' },
+            { name: 'Export and share', text: 'Copy Markdown, download a .md file, or copy HTML for WordPress, Medium, Ghost, or a custom site.' },
+        ]),
+    ]}
+>
     <Header currentPage="/" />
     
     <main>
         <!-- Hero -->
         <section class="hero container">
-            <h1>Press <span>→</span> Blog</h1>
-            <p class="hero-tagline">Paste any press release. Get a beautifully formatted blog post ready to publish.</p>
+            <h1>Convert a Press Release into a Blog Post</h1>
+            <p class="hero-tagline">PressFolio is a free press release to blog converter. Paste any press release and get a beautifully formatted blog post ready to publish — with the source, date, quotes, and figures already extracted.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="#stage-1" data-stage-link="1">🚀 Start converting free</a>
+                <a class="btn btn-secondary" href="/press-release-to-blog-post">See what it does</a>
+            </div>
         </section>
 
         <!-- Ad -->
@@ -226,7 +268,7 @@ The Mission aims to deliver an annual production of 5 MMT (Million Metric Tonnes
 
                 <!-- Preview -->
                 <div class="preview-box" id="preview-box">
-                    <h1 class="preview-title" id="preview-title">Your Title Here</h1>
+                    <h2 class="preview-title" id="preview-title">Your Title Here</h2>
                     <p class="preview-meta" id="preview-meta">Category • Date</p>
                     
                     <div class="preview-content" id="preview-content">
@@ -286,6 +328,9 @@ The Mission aims to deliver an annual production of 5 MMT (Million Metric Tonnes
         <div class="container">
             <div class="ad-placeholder leaderboard">📢 AD SPACE — Google AdSense</div>
         </div>
+
+        <!-- SEO content: describes the converter, the audience, and the workflow -->
+        <ContentSections faqs={faqs} />
     </main>
 
     <Footer />
@@ -310,6 +355,13 @@ The Mission aims to deliver an annual production of 5 MMT (Million Metric Tonnes
 
     stageBtns.forEach((btn, i) => {
         btn.addEventListener('click', () => showStage(i + 1));
+    });
+
+    // Hero CTAs jump into a specific stage rather than only scrolling to it.
+    document.querySelectorAll('[data-stage-link]').forEach(link => {
+        link.addEventListener('click', () => {
+            showStage(Number(link.getAttribute('data-stage-link')) || 1);
+        });
     });
 
     // Navigation Buttons

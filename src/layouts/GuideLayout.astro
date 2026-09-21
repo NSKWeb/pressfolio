@@ -1,0 +1,98 @@
+---
+interface Props {
+    eyebrow?: string;
+    heading: string;
+    intro: string;
+    /** Overrides `heading` in the title tag when the H1 is too long for search results. */
+    metaTitle?: string;
+    /** Overrides the intro-derived meta description. Aim for 120–160 characters. */
+    description?: string;
+    breadcrumb: { name: string; path: string }[];
+    faqs?: { question: string; answer: string }[];
+    ctaHref?: string;
+    ctaLabel?: string;
+    /** Extra JSON-LD nodes, e.g. Article markup for blog posts. */
+    schema?: object[];
+}
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { breadcrumbSchema, faqSchema } from '../schema';
+
+const {
+    eyebrow = 'Guide',
+    heading,
+    intro,
+    metaTitle = heading,
+    description = intro,
+    breadcrumb,
+    faqs,
+    ctaHref = '/',
+    ctaLabel = 'Convert a press release free',
+    schema = [],
+} = Astro.props;
+
+const pageSchema = [
+    breadcrumbSchema(breadcrumb),
+    ...(faqs ? [faqSchema(faqs)] : []),
+    ...schema,
+];
+
+// Highlight the owning section rather than the individual post in the nav.
+const lastPath = breadcrumb[breadcrumb.length - 1].path;
+const navActive = lastPath.startsWith('/blog/') ? '/blog' : lastPath;
+---
+
+<BaseLayout title={metaTitle} description={description} schema={pageSchema}>
+    <Header currentPage={navActive} />
+
+    <main class="container-sm">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            {breadcrumb.map((crumb, index) => (
+                <span>
+                    {index > 0 && <span aria-hidden="true"> / </span>}
+                    {index === breadcrumb.length - 1
+                        ? <span aria-current="page">{crumb.name}</span>
+                        : <a href={crumb.path}>{crumb.name}</a>}
+                </span>
+            ))}
+        </nav>
+
+        <header class="page-header">
+            <p class="page-eyebrow">{eyebrow}</p>
+            <h1>{heading}</h1>
+            <p class="page-intro">{intro}</p>
+            <a class="btn btn-primary" href={ctaHref}>{ctaLabel}</a>
+        </header>
+
+        <div class="prose">
+            <slot />
+        </div>
+
+        {faqs && (
+            <section class="prose">
+                <h2>Frequently asked questions</h2>
+                <div class="faq-list">
+                    {faqs.map(faq => (
+                        <details class="faq-item">
+                            <summary>{faq.question}</summary>
+                            <p>{faq.answer}</p>
+                        </details>
+                    ))}
+                </div>
+            </section>
+        )}
+
+        <section class="prose cta-block">
+            <h2>Try it on your next release</h2>
+            <p>
+                Paste your release into PressFolio and get a publish-ready draft in about three minutes. Free, no
+                account required.
+            </p>
+            <a class="btn btn-primary" href="/">{ctaLabel}</a>
+        </section>
+    </main>
+
+    <Footer />
+</BaseLayout>

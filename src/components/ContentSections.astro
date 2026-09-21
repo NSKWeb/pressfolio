@@ -1,0 +1,124 @@
+---
+interface Props {
+    faqs: { question: string; answer: string }[];
+}
+
+const { faqs } = Astro.props;
+
+const audience = [
+    {
+        icon: '📰',
+        title: 'Journalists',
+        text: 'Turn official releases and PIB statements into readable articles with the figures and quotes already pulled out.',
+    },
+    {
+        icon: '🤝',
+        title: 'PR & communications teams',
+        text: 'Repurpose a single client announcement into a blog article, a quick brief, and a social thread without rewriting by hand.',
+    },
+    {
+        icon: '📣',
+        title: 'Marketers',
+        text: 'Keep publishing cadence up when announcements arrive, and produce SEO-friendly articles from company news.',
+    },
+    {
+        icon: '🚀',
+        title: 'Startups & small businesses',
+        text: 'Publish funding, product, and hiring announcements as polished posts when there is no dedicated content team.',
+    },
+];
+
+const workflow = [
+    { step: 'Input', text: 'Paste the raw press release and choose the source type — PIB, company, ministerial, or other.' },
+    { step: 'Parse', text: 'The parser extracts source, date, location, headline, key quote, figures, and context.' },
+    { step: 'Refine', text: 'Edit the extracted fields and pick article, quick brief, or tweet thread output.' },
+    { step: 'Compose', text: 'Preview the generated post with headings, lists, quotes, and inline styling applied.' },
+    { step: 'Export', text: 'Copy Markdown, download a .md file, or copy HTML straight into your CMS.' },
+];
+---
+
+<section class="content-section container">
+    <h2>What is PressFolio?</h2>
+    <p>
+        PressFolio is a free press release to blog post converter. It reads the announcement you already wrote and
+        rebuilds it as a publishable article: it pulls out the issuing source, the date, the location, the headline,
+        the strongest quote, and the headline numbers, then formats everything into clean headings, lists, and
+        blockquotes. You review the draft, adjust anything that reads wrong, and export it as Markdown, a
+        <code>.md</code> file, or HTML.
+    </p>
+    <p>
+        Most teams lose hours to the same task: a release lands, and someone has to restructure it into something a
+        reader would actually finish. PressFolio removes the restructuring step. You keep editorial control over the
+        final text, but the mechanical work — finding the figures, attributing the quote, setting the byline date —
+        is already done when you open the draft.
+    </p>
+
+    <h2>Who it is for</h2>
+    <div class="features-grid">
+        {audience.map(item => (
+            <div class="feature-card">
+                <div class="feature-icon">{item.icon}</div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+            </div>
+        ))}
+    </div>
+
+    <h2>How the five-stage workflow works</h2>
+    <div class="steps-grid">
+        {workflow.map((item, index) => (
+            <div class="step-card">
+                <div class="step-number">{index + 1}</div>
+                <div class="step-content">
+                    <h3>{item.step}</h3>
+                    <p>{item.text}</p>
+                </div>
+            </div>
+        ))}
+    </div>
+
+    <h2>Formats you can generate from one release</h2>
+    <ul>
+        <li><strong>News article</strong> — a structured post with headings, context, quotes, and a figures section.</li>
+        <li><strong>Quick brief</strong> — a short announcement summary for newsroom or newsletter use.</li>
+        <li><strong>Tweet thread</strong> — the same announcement broken into numbered social posts.</li>
+        <li><strong>Markdown, .md, and HTML</strong> — export paths that drop straight into WordPress, Medium, Ghost, or a static site.</li>
+    </ul>
+
+    <h2>Built for press releases specifically</h2>
+    <p>
+        Generic AI copywriting tools will happily write you something new, but they rarely preserve the exact figures
+        and attributions an announcement depends on. PressFolio is scoped to the press release format: it recognises
+        PIB datelines, “Posted On” timestamps, ministerial statements, quoted officials, and rupee, dollar, and
+        percentage figures, and it keeps them attached to the right claim. It is not a press release distribution
+        service, a PR agency, or a general blogging platform — it converts release text you already have into an
+        article you can publish.
+    </p>
+
+    <h2>Related guides</h2>
+    <ul class="related-links">
+        <li><a href="/press-release-to-blog-post">Press release to blog post converter</a></li>
+        <li><a href="/pr-content-repurposing">PR content repurposing</a></li>
+        <li><a href="/announcement-to-blog">Announcement to blog post</a></li>
+        <li><a href="/blog/how-to-convert-a-press-release-into-a-blog-post">How to convert a press release into a blog post</a></li>
+        <li><a href="/blog/press-release-to-blog-post-examples">Before-and-after conversion examples</a></li>
+        <li><a href="/blog/press-release-seo-checklist">Press release SEO checklist</a></li>
+    </ul>
+    <p class="authority-links">
+        Reference material we rely on:
+        <a href="https://schema.org/Article" rel="noopener">schema.org Article markup</a>,
+        <a href="https://developers.google.com/search/docs/appearance/structured-data/article" rel="noopener">Google’s Article structured data guidance</a>,
+        <a href="https://www.w3.org/WAI/tutorials/page-structure/headings/" rel="noopener">W3C heading structure guidance</a>, and
+        <a href="https://pib.gov.in/" rel="noopener">the Press Information Bureau</a>.
+    </p>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+        {faqs.map(faq => (
+            <details class="faq-item">
+                <summary>{faq.question}</summary>
+                <p>{faq.answer}</p>
+            </details>
+        ))}
+    </div>
+</section>

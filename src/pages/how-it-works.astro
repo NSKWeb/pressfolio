@@ -2,9 +2,46 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { breadcrumbSchema, howToSchema } from '../schema';
+
+const steps = [
+    { name: 'Paste your press release', text: 'Copy the text from any official press release into the input stage and select the source type for better parsing.' },
+    { name: 'Auto-parse the key parameters', text: 'PressFolio extracts the source ministry or organisation, date, location, headline, key quote, and important figures.' },
+    { name: 'Refine and edit', text: 'Review the extracted parameters, choose article, quick brief, or tweet thread format, and opt into AI enhancement.' },
+    { name: 'Generate the blog post', text: 'Preview the formatted post with headings, lists, quotes, and styling applied.' },
+    { name: 'Export and share', text: 'Copy Markdown, download a .md file, copy HTML for your CMS, or share the post directly.' },
+];
+
+const howToFaqs = [
+    {
+        question: 'Does PressFolio send my press release to a server?',
+        answer:
+            'Basic parsing and formatting run entirely in your browser. AI enhancement is the only optional step that sends content to a model, and it only runs if you supply an API key and choose the AI mode.',
+    },
+    {
+        question: 'Can I edit the extracted fields before generating?',
+        answer:
+            'Yes. Every extracted parameter — source, date, location, headline, quote, and figures — is editable in the refine stage, and your corrections carry through to the generated post.',
+    },
+];
 ---
 
-<BaseLayout title="How It Works" description="Learn how PressFolio transforms press releases into blog posts.">
+<BaseLayout
+    title="How It Works"
+    description="Learn how PressFolio transforms press releases into blog posts in five stages: input, parse, refine, compose, and export."
+    schema={[
+        breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'How It Works', path: '/how-it-works' }]),
+        howToSchema(steps),
+        {
+            '@type': 'FAQPage',
+            mainEntity: howToFaqs.map(faq => ({
+                '@type': 'Question',
+                name: faq.question,
+                acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+            })),
+        },
+    ]}
+>
     <Header currentPage="/how-it-works" />
     
     <main class="container">
@@ -15,7 +52,7 @@ import Footer from '../components/Footer.astro';
 
         <!-- Steps -->
         <div class="steps-grid">
-            <div class="step-card">
+            <div class="step-card" id="step-1">
                 <div class="step-number">1</div>
                 <div class="step-content">
                     <h3>📥 Paste Your Press Release</h3>
@@ -23,7 +60,7 @@ import Footer from '../components/Footer.astro';
                 </div>
             </div>
 
-            <div class="step-card">
+            <div class="step-card" id="step-2">
                 <div class="step-number">2</div>
                 <div class="step-content">
                     <h3>🔍 Auto-Parse</h3>
@@ -31,7 +68,7 @@ import Footer from '../components/Footer.astro';
                 </div>
             </div>
 
-            <div class="step-card">
+            <div class="step-card" id="step-3">
                 <div class="step-number">3</div>
                 <div class="step-content">
                     <h3>✏️ Refine & Edit</h3>
@@ -39,7 +76,7 @@ import Footer from '../components/Footer.astro';
                 </div>
             </div>
 
-            <div class="step-card">
+            <div class="step-card" id="step-4">
                 <div class="step-number">4</div>
                 <div class="step-content">
                     <h3>✍️ Generate Blog Post</h3>
@@ -47,7 +84,7 @@ import Footer from '../components/Footer.astro';
                 </div>
             </div>
 
-            <div class="step-card">
+            <div class="step-card" id="step-5">
                 <div class="step-number">5</div>
                 <div class="step-content">
                     <h3>📤 Export & Share</h3>

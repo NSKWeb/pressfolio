@@ -1,0 +1,82 @@
+---
+import GuideLayout from '../layouts/GuideLayout.astro';
+
+const faqs = [
+    {
+        question: 'What is PR content repurposing?',
+        answer:
+            'It is the practice of taking one piece of public relations content — usually a press release or announcement — and producing several publishable assets from it: a blog article, a short brief, a social thread, an email snippet, and a newsletter item.',
+    },
+    {
+        question: 'How many assets can I get from a single press release?',
+        answer:
+            'With PressFolio you can produce a full news article, a quick brief, and a tweet thread from the same input without retyping anything. Each reuses the same extracted source, quotes, and figures.',
+    },
+    {
+        question: 'Why repurpose instead of writing each format separately?',
+        answer:
+            'Repurposing keeps the facts consistent. When every format derives from the same parsed source, the figures and quotes cannot drift between the blog post and the social thread.',
+    },
+];
+---
+
+<GuideLayout
+    eyebrow="Workflow"
+    heading="PR Content Repurposing From a Single Press Release"
+    intro="Most PR teams write one strong release and then run out of time to publish it everywhere. This guide shows how to turn a single press release into a blog article, a short brief, and a social thread while keeping every figure and quote consistent."
+    description="Turn one press release into a blog article, a short brief, a social thread, and newsletter copy while keeping every figure and quote consistent."
+    breadcrumb={[{ name: 'Home', path: '/' }, { name: 'PR Content Repurposing', path: '/pr-content-repurposing' }]}
+    faqs={faqs}
+>
+    <h2>The repurposing problem</h2>
+    <p>
+        A press release is written for journalists, not for readers. It front-loads the dateline, buries the
+        interesting detail under official phrasing, and assumes the reader already cares. That is why repurposing is
+        manual work: every destination format needs a different opening, a different length, and a different level of
+        formality.
+    </p>
+    <p>
+        The trap is that each format is rewritten from scratch, and each rewrite is a chance for a number to change.
+        Repurposing from one parsed source removes that risk. Parse the release once, then generate each output from
+        the same extracted facts.
+    </p>
+
+    <h2>The asset stack from one release</h2>
+    <table>
+        <thead>
+            <tr><th>Asset</th><th>Source in the release</th><th>Channel</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Blog article</td><td>Headline, context, quote, figures</td><td>Company blog, newsroom</td></tr>
+            <tr><td>Quick brief</td><td>Headline, dateline, strongest figure</td><td>Newsletter, internal update</td></tr>
+            <tr><td>Tweet thread</td><td>Headline, one fact per post, quote</td><td>Social</td></tr>
+            <tr><td>Email snippet</td><td>Opening paragraph</td><td>Outreach, investor updates</td></tr>
+            <tr><td>Meta description</td><td>Headline plus primary figure</td><td>Search and social previews</td></tr>
+        </tbody>
+    </table>
+
+    <h2>A practical sequence</h2>
+    <ol>
+        <li><strong>Parse once.</strong> Paste the release and let the converter extract source, date, location, headline, quote, figures, and context.</li>
+        <li><strong>Correct the facts first.</strong> Fix names, numbers, and dates in the refine stage before generating anything, so every output inherits the corrected data.</li>
+        <li><strong>Generate the long form.</strong> Produce the article first — it needs the most context and will expose gaps in the source material.</li>
+        <li><strong>Derive the short forms.</strong> Produce the brief and thread from the same fields. Nothing needs retyping.</li>
+        <li><strong>Publish in parallel.</strong> Export Markdown for the CMS, HTML for a newsletter tool, and the thread for social.</li>
+    </ol>
+
+    <h2>Keeping consistency across formats</h2>
+    <p>
+        Two rules keep repurposed content honest. First, never introduce a claim in a derived format that is not in
+        the parsed source — if the thread needs a stat the release does not contain, that is a gap in the release, not
+        a writing problem. Second, keep the attribution identical everywhere: the same speaker, the same title, the
+        same organisation, in the article, the brief, and the thread.
+    </p>
+
+    <h2>Where PressFolio fits</h2>
+    <p>
+        PressFolio handles the extraction and the formatting for the article, brief, and thread formats from a single
+        input. It also gives you a clean Markdown export, which is the easiest format to hand to a CMS or a
+        newsletter tool. See <a href="/press-release-to-blog-post">how the converter works</a>, or read the
+        <a href="/blog/press-release-seo-checklist">press release SEO checklist</a> before you publish.
+    </p>
+</GuideLayout>

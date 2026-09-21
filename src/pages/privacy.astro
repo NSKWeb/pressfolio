@@ -4,7 +4,10 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<BaseLayout title="Privacy Policy" description="Privacy Policy for PressFolio.">
+<BaseLayout
+    title="Privacy Policy"
+    description="How PressFolio handles your data. Basic conversion runs entirely in your browser. Optional AI enhancement sends your extracted parameters to NaraRouter to generate the draft."
+>
     <Header />
     
     <main class="container">
@@ -13,12 +16,18 @@ import Footer from '../components/Footer.astro';
             <p style="color: var(--text-muted); margin-bottom: 2rem;">Last updated: August 2026</p>
 
             <h2>1. User Data Non-Retention</h2>
-            <p>PressFolio is a client-side tool. All text processing happens entirely within your web browser. We do not:</p>
+            <p>Basic conversion is a client-side operation. Parsing, formatting, and export all happen inside your web browser, and that text never reaches our servers. We do not:</p>
             <ul>
-                <li>Upload, transmit, or store any text you input</li>
+                <li>Upload, transmit, or store text you enter in Basic mode</li>
                 <li>Collect any personal information from users</li>
                 <li>Maintain any user accounts or profiles</li>
             </ul>
+            <p>
+                The one exception is <strong>AI Enhancement</strong>. When you opt into an AI-generated draft, the
+                extracted parameters (title, source, date, quote, figures, and context — not your full pasted text)
+                are sent to our server and forwarded to NaraRouter to produce the draft. AI Enhancement is off by
+                default; if you never select it, nothing leaves your browser.
+            </p>
 
             <h2>2. Local Storage</h2>
             <p>We use browser localStorage to store:</p>
@@ -32,6 +41,7 @@ import Footer from '../components/Footer.astro';
             <ul>
                 <li><strong>Google Fonts:</strong> Used for typography. See <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
                 <li><strong>Google AdSense:</strong> For advertising. See <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
+                <li><strong>NaraRouter:</strong> Processes AI Enhancement requests. Only the extracted parameters are sent. See <a href="https://nara.id">nara.id</a></li>
             </ul>
 
             <h2>4. Cookies</h2>

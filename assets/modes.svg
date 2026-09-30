@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 300" width="880" height="300" role="img" aria-labelledby="modesTitle modesDesc">
+  <title id="modesTitle">Basic mode versus AI mode</title>
+  <desc id="modesDesc">Comparison of the two generation modes. Basic mode runs locally in the browser, needs no API key, and produces a fast template-based draft. AI mode sends the extracted parameters to NaraRouter, requires a free NARA_API_KEY, and produces a longer rewritten draft. Both export Markdown, dot-md and HTML.</desc>
+
+  <rect width="880" height="300" fill="#FFFFFF"/>
+
+  <!-- Basic column -->
+  <rect x="24" y="28" width="404" height="240" rx="12" fill="#FAFAF8" stroke="#059669" stroke-width="2"/>
+  <rect x="24" y="28" width="404" height="46" rx="12" fill="#D1FAE5"/>
+  <rect x="24" y="60" width="404" height="14" fill="#D1FAE5"/>
+  <text x="226" y="58" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#065F46">Basic mode</text>
+
+  <g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#1A1A1A">
+    <text x="48" y="104">Runs</text>
+    <text x="404" y="104" text-anchor="end" font-weight="600">in your browser</text>
+    <line x1="48" y1="116" x2="404" y2="116" stroke="#E5E5DF" stroke-width="1.5"/>
+
+    <text x="48" y="140">API key</text>
+    <text x="404" y="140" text-anchor="end" font-weight="600" fill="#065F46">not needed</text>
+    <line x1="48" y1="152" x2="404" y2="152" stroke="#E5E5DF" stroke-width="1.5"/>
+
+    <text x="48" y="176">Output</text>
+    <text x="404" y="176" text-anchor="end" font-weight="600">template draft</text>
+    <line x1="48" y1="188" x2="404" y2="188" stroke="#E5E5DF" stroke-width="1.5"/>
+
+    <text x="48" y="212">Speed</text>
+    <text x="404" y="212" text-anchor="end" font-weight="600">instant</text>
+    <line x1="48" y1="224" x2="404" y2="224" stroke="#E5E5DF" stroke-width="1.5"/>
+
+    <text x="48" y="248">Your text</text>
+    <text x="404" y="248" text-anchor="end" font-weight="600" fill="#065F46">stays on device</text>
+  </g>
+
+  <!-- AI column -->
+  <rect x="452" y="28" width="404" height="240" rx="12" fill="#FFF8F8" stroke="#D62828" stroke-width="2"/>
+  <rect x="452" y="28" width="404" height="46" rx="12" fill="#FEE2E2"/>
+  <rect x="452" y="60" width="404" height="14" fill="#FEE2E2"/>
+  <text x="654" y="58" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#B91C1C">AI mode</text>
+
+  <g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#1A1A1A">
+    <text x="476" y="104">Runs</text>
+    <text x="832" y="104" text-anchor="end" font-weight="600">on the server</text>
+    <line x1="476" y1="116" x2="832" y2="116" stroke="#F0DCDC" stroke-width="1.5"/>
+
+    <text x="476" y="140">API key</text>
+    <text x="832" y="140" text-anchor="end" font-weight="600" fill="#B91C1C">NARA_API_KEY</text>
+    <line x1="476" y1="152" x2="832" y2="152" stroke="#F0DCDC" stroke-width="1.5"/>
+
+    <text x="476" y="176">Output</text>
+    <text x="832" y="176" text-anchor="end" font-weight="600">rewritten prose</text>
+    <line x1="476" y1="188" x2="832" y2="188" stroke="#F0DCDC" stroke-width="1.5"/>
+
+    <text x="476" y="212">Speed</text>
+    <text x="832" y="212" text-anchor="end" font-weight="600">a few seconds</text>
+    <line x1="476" y1="224" x2="832" y2="224" stroke="#F0DCDC" stroke-width="1.5"/>
+
+    <text x="476" y="248">Your text</text>
+    <text x="832" y="248" text-anchor="end" font-weight="600" fill="#B91C1C">fields are sent</text>
+  </g>
+
+  <text x="440" y="290" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#7A7A7A">Both modes export the same way: copy Markdown, download .md, or copy HTML.</text>
+</svg>

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 232" width="880" height="232" role="img" aria-labelledby="flowTitle flowDesc">
+  <title id="flowTitle">The five-stage PressFolio workflow</title>
+  <desc id="flowDesc">A left-to-right pipeline. Stage 1 Input, paste a press release. Stage 2 Parse, extract source, date, location, headline, quote and figures. Stage 3 Refine, edit fields and choose Basic or AI generation. Stage 4 Compose, preview the post. Stage 5 Export, copy Markdown, download dot-md, or copy HTML. Stages 1, 2, 4 and 5 run in the browser; stage 3 calls the server only in AI mode.</desc>
+
+  <rect width="880" height="232" fill="#FFFFFF"/>
+
+  <!-- Connector rail -->
+  <line x1="92" y1="112" x2="788" y2="112" stroke="#E5E5DF" stroke-width="4"/>
+
+  <!-- Arrows -->
+  <g fill="#1A1A1A">
+    <polygon points="172,106 184,112 172,118"/>
+    <polygon points="332,106 344,112 332,118"/>
+    <polygon points="492,106 504,112 492,118"/>
+    <polygon points="652,106 664,112 652,118"/>
+  </g>
+
+  <!-- Stage 1 -->
+  <g>
+    <rect x="24" y="56" width="148" height="112" rx="11" fill="#FAFAF8" stroke="#1A1A1A" stroke-width="2"/>
+    <circle cx="48" cy="82" r="15" fill="#D62828"/>
+    <text x="48" y="87" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">1</text>
+    <text x="70" y="87" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#1A1A1A">Input</text>
+    <text x="40" y="116" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#4A4A4A">Paste a press</text>
+    <text x="40" y="133" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#4A4A4A">release</text>
+    <text x="40" y="156" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#059669">browser</text>
+  </g>
+
+  <!-- Stage 2 -->
+  <g>
+    <rect x="184" y="56" width="148" height="112" rx="11" fill="#FAFAF8" stroke="#1A1A1A" stroke-width="2"/>
+    <circle cx="208" cy="82" r="15" fill="#D62828"/>
+    <text x="208" y="87" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">2</text>
+    <text x="230" y="87" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#1A1A1A">Parse</text>
+    <text x="200" y="116" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#4A4A4A">Extract source,</text>
+    <text x="200" y="133" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#4A4A4A">date, quote</text>
+    <text x="200" y="156" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#059669">browser</text>
+  </g>
+
+  <!-- Stage 3 -->
+  <g>
+    <rect x="344" y="56" width="148" height="112" rx="11" fill="#FEE2E2" stroke="#D62828" stroke-width="2"/>
+    <circle cx="368" cy="82" r="15" fill="#D62828"/>
+    <text x="368" y="87" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">3</text>
+    <text x="390" y="87" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#1A1A1A">Refine</text>
+    <text x="360" y="116" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#4A4A4A">Edit, pick Basic</text>
+    <text x="360" y="133" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#4A4A4A">or AI</text>
+    <text x="360" y="156" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#B91C1C">+ server if AI</text>
+  </g>
+
+  <!-- Stage 4 -->
+  <g>
+    <rect x="504" y="56" width="148" height="112" rx="11" fill="#FAFAF8" stroke="#1A1A1A" stroke-width="2"/>
+    <circle cx="528" cy="82" r="15" fill="#D62828"/>
+    <text x="528" y="87" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">4</text>
+    <text x="550" y="87" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#1A1A1A">Compose</text>
+    <text x="520" y="116" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#4A4A4A">Preview the</text>
+    <text x="520" y="133" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#4A4A4A">finished post</text>
+    <text x="520" y="156" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#059669">browser</text>
+  </g>
+
+  <!-- Stage 5 -->
+  <g>
+    <rect x="664" y="56" width="148" height="112" rx="11" fill="#D1FAE5" stroke="#059669" stroke-width="2"/>
+    <circle cx="688" cy="82" r="15" fill="#059669"/>
+    <text x="688" y="87" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">5</text>
+    <text x="710" y="87" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#1A1A1A">Export</text>
+    <text x="680" y="116" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#065F46">Markdown, .md</text>
+    <text x="680" y="133" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#065F46">or HTML</text>
+    <text x="680" y="156" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="600" fill="#065F46">browser</text>
+  </g>
+
+  <text x="440" y="206" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#7A7A7A">The whole flow takes about three minutes. Stages 1, 2, 4 and 5 never leave your browser.</text>
+</svg>

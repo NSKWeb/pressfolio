@@ -1,0 +1,135 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import { articleSchema } from '../../schema';
+
+const meta = {
+    title: 'Press Release to Blog Post Examples',
+    headline: 'Press Release to Blog Post Examples: Before and After',
+    description:
+        'Worked before-and-after examples showing how a raw funding announcement, product launch, and policy release become publishable blog posts.',
+    path: '/blog/press-release-to-blog-post-examples',
+    date: '2026-03-04',
+};
+
+const faqs = [
+    {
+        question: 'Are these examples real press releases?',
+        answer:
+            'They are representative examples modelled on the structure of real funding, product, and policy announcements. The transformation pattern is the same for any release that carries a headline claim, a quote, and key figures.',
+    },
+    {
+        question: 'What is the single biggest change in every before-and-after?',
+        answer:
+            'The order of the facts. The release leads with the dateline and issuing body; the post leads with what changed and why it matters. The underlying facts are unchanged.',
+    },
+];
+---
+
+<GuideLayout
+    eyebrow="Examples"
+    heading={meta.headline}
+    metaTitle={meta.title}
+    intro={meta.description}
+    breadcrumb={[
+        { name: 'Home', path: '/' },
+        { name: 'Blog', path: '/blog' },
+        { name: meta.headline, path: meta.path },
+    ]}
+    faqs={faqs}
+    schema={[articleSchema({ headline: meta.headline, description: meta.description, path: meta.path, datePublished: meta.date })]}
+>
+    <p>
+        These three conversions show the same pattern applied to different announcement types. In each case the facts,
+        figures, and attribution are preserved exactly; the structure and the opening are rebuilt for a reader rather
+        than for a news desk.
+    </p>
+
+    <h2>Example 1: A funding announcement</h2>
+    <h3>Before — raw release opening</h3>
+    <blockquote>
+        FOR IMMEDIATE RELEASE — BENGALURU, 12 March. Acme Analytics, a provider of retail demand forecasting software,
+        today announced it has raised $8 million in a Series A funding round led by Northwind Capital, with
+        participation from existing investors. The company intends to use the proceeds to expand its engineering team
+        and accelerate product development.
+    </blockquote>
+
+    <h3>After — converted blog post opening</h3>
+    <blockquote>
+        Acme Analytics has raised $8 million to expand its retail demand forecasting software. The Series A round was
+        led by Northwind Capital and included existing investors. The company says the funding will go towards growing
+        its engineering team and accelerating product development.
+    </blockquote>
+    <p>
+        What changed: the dateline and “FOR IMMEDIATE RELEASE” header were dropped, the amount and the lead investor
+        moved from the middle to the first two sentences, and the boilerplate self-description became a short clause.
+        What stayed: the exact figure, the round name, the lead investor, and the stated use of funds.
+    </p>
+
+    <h2>Example 2: A product launch</h2>
+    <h3>Before — raw release</h3>
+    <blockquote>
+        Acme Analytics Version 4.0 is now generally available. The release introduces automated anomaly detection,
+        support for hourly forecasting granularity, and a revised REST API. The product is available on all paid plans
+        at no additional cost. Existing customers will receive the update automatically over the next two weeks.
+    </blockquote>
+
+    <h3>After — converted blog post</h3>
+    <blockquote>
+        Acme Analytics now flags demand anomalies automatically. Version 4.0, available today on all paid plans at no
+        extra cost, adds automated anomaly detection, hourly forecasting granularity, and a revised REST API. Existing
+        customers receive the update automatically over the next two weeks.
+    </blockquote>
+    <p>
+        What changed: the version number moved out of the lead sentence and the capability became the headline. What
+        stayed: the feature list, the pricing terms, and the two-week rollout window. Nothing was embellished — the
+        post does not claim the features are faster or more accurate, because the release does not.
+    </p>
+
+    <h2>Example 3: A policy release</h2>
+    <h3>Before — raw release</h3>
+    <blockquote>
+        Ministry of New and Renewable Energy — Government of India approves National Green Hydrogen Mission with an
+        outlay of Rs. 19,744 crore. Posted On: 04 JAN 2023 3:45PM by PIB Delhi. New Delhi: The Union Cabinet, chaired
+        by Prime Minister Shri Narendra Modi, has approved the National Green Hydrogen Mission. The initial outlay for
+        the Mission will be Rs. 19,744 crore, including Rs. 17,490 crore for the SIGHT programme, Rs. 1,466 crore for
+        pilot projects, Rs. 400 crore for R&amp;D, and Rs. 388 crore towards other Mission components. The Mission
+        aims to deliver an annual production of 5 MMT of Green Hydrogen by 2030, with an associated renewable energy
+        capacity addition of about 125 GW.
+    </blockquote>
+
+    <h3>After — converted blog post</h3>
+    <blockquote>
+        India has approved a Rs. 19,744 crore National Green Hydrogen Mission, targeting 5 MMT of annual green
+        hydrogen production by 2030 and roughly 125 GW of associated renewable capacity. The Union Cabinet approved
+        the mission with an initial outlay of Rs. 19,744 crore, allocated across Rs. 17,490 crore for the SIGHT
+        programme, Rs. 1,466 crore for pilot projects, Rs. 400 crore for research and development, and Rs. 388 crore
+        for other components.
+    </blockquote>
+    <p>
+        What changed: the ministry name and the PIB timestamp were removed from the lead and the target figures were
+        promoted to the opening line. What stayed: every rupee figure, the 5 MMT target, the 2030 deadline, and the
+        125 GW capacity number. The allocation breakdown survives as a single clause instead of a run-on sentence.
+    </p>
+
+    <h2>The pattern across all three</h2>
+    <table>
+        <thead>
+            <tr><th>Move</th><th>Release</th><th>Post</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Opening</td><td>Dateline and issuing body</td><td>The change and its significance</td></tr>
+            <tr><td>Headline number</td><td>Mid-paragraph</td><td>First sentence</td></tr>
+            <tr><td>Quote</td><td>Wherever it appeared</td><td>After the claim it supports, fully attributed</td></tr>
+            <tr><td>Boilerplate</td><td>Full paragraph</td><td>Removed or condensed to a clause</td></tr>
+            <tr><td>Figures</td><td>In prose</td><td>Preserved verbatim, often as a list</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Run your own</h2>
+    <p>
+        Paste your release into <a href="/">the converter</a> to get the parsed version, then apply the pattern above
+        during review. The <a href="/blog/how-to-convert-a-press-release-into-a-blog-post">step-by-step guide</a> covers
+        the full workflow, and the <a href="/blog/press-release-seo-checklist">SEO checklist</a> covers what to verify
+        before publishing.
+    </p>
+</GuideLayout>

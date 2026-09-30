@@ -1,0 +1,143 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import { articleSchema } from '../../schema';
+
+const meta = {
+    title: 'The Press Release SEO Checklist',
+    description:
+        'Fifteen checks to run on a converted press release before you publish: title tags, meta descriptions, headings, structured data, canonical tags, and AI visibility.',
+    path: '/blog/press-release-seo-checklist',
+    date: '2026-04-01',
+};
+
+const checks = [
+    { area: 'Title tag', check: 'Under 60 characters, leads with the specific change, includes the primary topic' },
+    { area: 'Meta description', check: '120–155 characters, written as a reason to click, not a summary' },
+    { area: 'Headings', check: 'Exactly one H1; H2s describe sections rather than label them (use “Allocation breakdown”, not “Details”)' },
+    { area: 'Canonical', check: 'A <link rel="canonical"> pointing at the live URL, so distribution copies do not compete' },
+    { area: 'URL', check: 'Short, hyphenated, and readable — /press-release-to-blog-post, not /?p=1234' },
+    { area: 'Figures', check: 'Every number matches the original release; units and currency symbols included' },
+    { area: 'Attribution', check: 'Full name and title on first mention of every quoted speaker' },
+    { area: 'Dates', check: 'Publication and event dates are explicit and machine-readable with <time datetime>' },
+    { area: 'Images', check: 'At least one relevant image with descriptive alt text' },
+    { area: 'Internal links', check: 'Two to four links to related pages that a reader would genuinely want next' },
+    { area: 'External links', check: 'Links to authoritative primary sources for any claim the release does not cover' },
+    { area: 'Structured data', check: 'Article JSON-LD with headline, datePublished, author, and publisher' },
+    { area: 'FAQ markup', check: 'FAQPage JSON-LD for any reader questions the post answers' },
+    { area: 'robots meta', check: 'index, follow on the published page; no accidental noindex from a staging build' },
+    { area: 'Sitemap', check: 'The URL appears in sitemap.xml so crawlers discover it without waiting for links' },
+];
+---
+
+<GuideLayout
+    eyebrow="Checklist"
+    heading={meta.title}
+    intro={meta.description}
+    breadcrumb={[
+        { name: 'Home', path: '/' },
+        { name: 'Blog', path: '/blog' },
+        { name: meta.title, path: meta.path },
+    ]}
+    schema={[articleSchema({ headline: meta.title, description: meta.description, path: meta.path, datePublished: meta.date })]}
+>
+    <p>
+        A converted press release usually gets the writing right and the technical layer wrong. These fifteen checks
+        catch the problems that keep an otherwise good post out of search results and AI answers. Run them between
+        generating the draft and hitting publish.
+    </p>
+
+    <h2>The fifteen checks</h2>
+    <table>
+        <thead>
+            <tr><th>Area</th><th>What to verify</th></tr>
+        </thead>
+        <tbody>
+            {checks.map(row => (
+                <tr><td><strong>{row.area}</strong></td><td>{row.check}</td></tr>
+            ))}
+        </tbody>
+    </table>
+
+    <h2>1. Title and description</h2>
+    <p>
+        Release headlines are optimised for wire services, and they are usually too long and too generic for search.
+        Rewrite so the title includes the specific change and the primary topic, and keep it under 60 characters so it
+        is not truncated. The meta description is not a summary — it is the pitch that decides whether someone clicks.
+    </p>
+    <pre><code>Weak:   Acme Analytics Announces Series A Funding Round
+Strong: Acme Analytics Raises $8M to Expand Forecasting Software</code></pre>
+
+    <h2>2. Headings and structure</h2>
+    <p>
+        One H1 only. Every additional H1 dilutes the page topic. Section headings should carry meaning: somebody
+        scanning only your headings should still understand the announcement. “Details” and “More information” tell a
+        reader nothing.
+    </p>
+
+    <h2>3. Canonical and URL</h2>
+    <p>
+        If you syndicate the post to a partner site or republish it elsewhere, set a canonical tag on your own version
+        so the copies do not compete. Without a canonical, search engines have to guess which URL is the original,
+        and they often guess wrong. Keep the URL short and readable — it is visible in every search result.
+    </p>
+
+    <h2>4. Accuracy of figures and attribution</h2>
+    <p>
+        This is the check most specific to press release content, and the one with real consequences. Compare every
+        number against the original release. Then confirm that each speaker is named in full with their title on first
+        mention. A quote without a title reads as invented.
+    </p>
+
+    <h2>5. Structured data</h2>
+    <p>
+        Add <code>Article</code> JSON-LD with the headline, publication date, author, and publisher. If the post
+        answers reader questions, add <code>FAQPage</code> markup for those. Structured data is also what makes a page
+        legible to AI answer engines: without it, models have to infer the brand, the date, and the topic from prose.
+    </p>
+    <pre><code>{`{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Acme Analytics Raises $8M",
+  "datePublished": "2026-03-12",
+  "author":    { "@type": "Organization", "name": "Acme Analytics" },
+  "publisher": { "@type": "Organization", "name": "Acme Analytics" }
+}`}</code></pre>
+
+    <h2>6. Internal and external links</h2>
+    <p>
+        Internal links help readers continue and help crawlers understand which pages matter. Link to pages a reader
+        would genuinely want next, not to everything. External links to primary sources — the issuing body, the
+        standard, the dataset — build credibility and give AI systems a source to verify against.
+    </p>
+
+    <h2>7. Indexability</h2>
+    <p>
+        Confirm the published page is not inheriting a <code>noindex</code> from a staging build, and confirm the URL
+        appears in <code>sitemap.xml</code>. Both are silent failures: nothing in the interface tells you the page is
+        invisible.
+    </p>
+
+    <h2>8. AI visibility</h2>
+    <p>
+        AI answer engines summarise rather than rank. To be quotable, state the facts plainly near the top, keep
+        figures in a consistent format, define the organisation and the date explicitly, and avoid burying the core
+        claim under scene-setting. A post that answers “what changed, for whom, and by how much” in the first
+        paragraph is far likelier to be cited.
+    </p>
+
+    <h2>Quick pre-publish pass</h2>
+    <ol>
+        <li>Title under 60 characters with the specific change.</li>
+        <li>Meta description 120–155 characters.</li>
+        <li>One H1, descriptive H2s.</li>
+        <li>Canonical set to the live URL.</li>
+        <li>Every figure and name verified against the release.</li>
+        <li>Article and FAQ JSON-LD present.</li>
+        <li>URL in the sitemap, page indexable.</li>
+    </ol>
+
+    <p>
+        To produce the draft these checks apply to, use <a href="/">the PressFolio converter</a>. For the conversion
+        workflow itself, see <a href="/blog/how-to-convert-a-press-release-into-a-blog-post">the step-by-step guide</a>.
+    </p>
+</GuideLayout>

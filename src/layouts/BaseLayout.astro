@@ -2,29 +2,82 @@
 interface Props {
     title: string;
     description?: string;
+    /** Absolute or root-relative path to the social share image. */
+    image?: string;
+    imageAlt?: string;
+    canonical?: string;
+    robots?: string;
+    type?: string;
+    /** Extra JSON-LD nodes to emit alongside the site-wide graph. */
+    schema?: object[];
 }
 
-const { title, description = "Transform press releases into beautiful blog posts. PressFolio - Your press release to blog converter." } = Astro.props;
+import { SITE, canonicalUrl } from '../config';
+import { organizationSchema, websiteSchema, softwareApplicationSchema } from '../schema';
+import '../styles/global.css';
+
+const {
+    title,
+    description = SITE.metaDescription,
+    image = '/og-image.png',
+    imageAlt = 'PressFolio — press release to blog post converter',
+    canonical = Astro.url.pathname,
+    robots = 'index, follow, max-image-preview:large',
+    type = 'website',
+    schema = [],
+} = Astro.props;
+
+const pageTitle = `${title} | ${SITE.name}`;
+const canonicalHref = canonicalUrl(canonical);
+const imageHref = image.startsWith('http') ? image : `${SITE.url}${image}`;
+
+const graph = {
+    '@context': 'https://schema.org',
+    '@graph': [organizationSchema, websiteSchema, softwareApplicationSchema, ...schema],
+};
 ---
 
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang={SITE.language} data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{pageTitle}</title>
     <meta name="description" content={description}>
-    <title>{title} | PressFolio</title>
+    <meta name="robots" content={robots}>
+    <link rel="canonical" href={canonicalHref}>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={type}>
+    <meta property="og:site_name" content={SITE.name}>
+    <meta property="og:title" content={pageTitle}>
+    <meta property="og:description" content={description}>
+    <meta property="og:url" content={canonicalHref}>
+    <meta property="og:image" content={imageHref}>
+    <meta property="og:image:alt" content={imageAlt}>
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content={SITE.locale}>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={pageTitle}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={imageHref}>
+    <meta name="twitter:image:alt" content={imageAlt}>
     
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- Styles -->
-    <link rel="stylesheet" href="/styles/global.css">
+    <!-- Styles are bundled from src/styles/global.css -->
+
+    <script type="application/ld+json" set:html={JSON.stringify(graph)} />
 </head>
 <body>
     <slot />

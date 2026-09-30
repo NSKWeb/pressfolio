@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" width="880" height="340" role="img" aria-labelledby="parseTitle parseDesc">
+  <title id="parseTitle">What the parser extracts from a press release</title>
+  <desc id="parseDesc">Six fields are pulled out of raw press release text: Source, Date, Location, Headline, Key quote and Figures. A raw text block on the left shows sample press release lines; six field cards on the right show the extracted values.</desc>
+
+  <rect width="880" height="340" fill="#FFFFFF"/>
+
+  <!-- Raw input -->
+  <rect x="24" y="40" width="300" height="248" rx="11" fill="#FAFAF8" stroke="#1A1A1A" stroke-width="2"/>
+  <text x="44" y="66" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1.3" fill="#7A7A7A">RAW INPUT</text>
+
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12">
+    <text x="44" y="96" fill="#7A7A7A">Press Information Bureau</text>
+    <text x="44" y="114" fill="#7A7A7A">Government of India</text>
+    <text x="44" y="138" fill="#1A1A1A" font-weight="700">Cabinet approves new</text>
+    <text x="44" y="156" fill="#1A1A1A" font-weight="700">scheme for rural broadband</text>
+    <text x="44" y="180" fill="#7A7A7A">New Delhi, 12 August 2026</text>
+    <text x="44" y="204" fill="#7A7A7A">&#8220;This will connect 50,000</text>
+    <text x="44" y="222" fill="#7A7A7A">villages,&#8221; said the Minister.</text>
+    <text x="44" y="246" fill="#7A7A7A">&#8377;12,000 crore allocated</text>
+    <text x="44" y="264" fill="#7A7A7A">over three years.</text>
+  </g>
+
+  <!-- Connector -->
+  <line x1="336" y1="164" x2="372" y2="164" stroke="#1A1A1A" stroke-width="3"/>
+  <polygon points="372,156 385,164 372,172" fill="#1A1A1A"/>
+
+  <!-- Source -->
+  <rect x="396" y="40" width="220" height="76" rx="9" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="396" y="40" width="6" height="76" rx="3" fill="#D62828"/>
+  <text x="418" y="64" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.1" fill="#7A7A7A">SOURCE</text>
+  <text x="418" y="87" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#1A1A1A">Press Information Bureau</text>
+  <text x="418" y="106" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#7A7A7A">the issuing body</text>
+
+  <!-- Date -->
+  <rect x="636" y="40" width="220" height="76" rx="9" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="636" y="40" width="6" height="76" rx="3" fill="#D62828"/>
+  <text x="658" y="64" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.1" fill="#7A7A7A">DATE</text>
+  <text x="658" y="87" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#1A1A1A">12 August 2026</text>
+  <text x="658" y="106" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#7A7A7A">from the dateline</text>
+
+  <!-- Location -->
+  <rect x="396" y="128" width="220" height="76" rx="9" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="396" y="128" width="6" height="76" rx="3" fill="#D62828"/>
+  <text x="418" y="152" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.1" fill="#7A7A7A">LOCATION</text>
+  <text x="418" y="175" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#1A1A1A">New Delhi</text>
+  <text x="418" y="194" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#7A7A7A">dateline city</text>
+
+  <!-- Headline -->
+  <rect x="636" y="128" width="220" height="76" rx="9" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1.5"/>
+  <rect x="636" y="128" width="6" height="76" rx="3" fill="#D62828"/>
+  <text x="658" y="152" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.1" fill="#7A7A7A">HEADLINE</text>
+  <text x="658" y="175" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="13" fill="#1A1A1A">Cabinet approves...</text>
+  <text x="658" y="194" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#7A7A7A">becomes the title</text>
+
+  <!-- Quote -->
+  <rect x="396" y="216" width="220" height="84" rx="9" fill="#FEE2E2" stroke="#D62828" stroke-width="1.5"/>
+  <rect x="396" y="216" width="6" height="84" rx="3" fill="#D62828"/>
+  <text x="418" y="240" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.1" fill="#B91C1C">KEY QUOTE</text>
+  <text x="418" y="263" font-family="Georgia,'Times New Roman',serif" font-size="13" font-style="italic" fill="#1A1A1A">&#8220;This will connect</text>
+  <text x="418" y="281" font-family="Georgia,'Times New Roman',serif" font-size="13" font-style="italic" fill="#1A1A1A">50,000 villages&#8221;</text>
+
+  <!-- Figures -->
+  <rect x="636" y="216" width="220" height="84" rx="9" fill="#FEE2E2" stroke="#D62828" stroke-width="1.5"/>
+  <rect x="636" y="216" width="6" height="84" rx="3" fill="#D62828"/>
+  <text x="658" y="240" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.1" fill="#B91C1C">FIGURES</text>
+  <text x="658" y="263" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12.5" fill="#1A1A1A">&#8377;12,000 crore</text>
+  <text x="658" y="281" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12.5" fill="#1A1A1A">50,000 villages</text>
+
+  <text x="440" y="320" text-anchor="middle" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12.5" fill="#7A7A7A">Every extracted field stays editable in Stage 3, so you can correct anything the parser gets wrong.</text>
+</svg>

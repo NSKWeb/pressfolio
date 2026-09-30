@@ -1,0 +1,93 @@
+---
+import GuideLayout from '../layouts/GuideLayout.astro';
+
+const faqs = [
+    {
+        question: 'What does a press release to blog post converter do?',
+        answer:
+            'It reads the text of a press release and rebuilds it as a blog article: it identifies the issuing organisation, date, location, headline, quotes, and figures, then formats them into headings, body paragraphs, and a figures list. You review the draft and export it.',
+    },
+    {
+        question: 'Can I use PressFolio for PIB and government releases?',
+        answer:
+            'Yes. PressFolio recognises Press Information Bureau (PIB) datelines and "Posted On" timestamps, ministerial statements, and the rupee and percentage figures that appear in government releases, and keeps them attached to the correct claims.',
+    },
+    {
+        question: 'Do I need to rewrite the whole post myself afterwards?',
+        answer:
+            'No. The draft arrives structured and attributed. Most teams make light edits to tone and add a closing line, then publish. You can also choose the quick brief format if you only need a summary.',
+    },
+    {
+        question: 'What formats can I export?',
+        answer:
+            'Copy Markdown to your clipboard, download a .md file, or copy clean HTML that pastes directly into WordPress, Medium, Ghost, or a custom CMS.',
+    },
+];
+---
+
+<GuideLayout
+    eyebrow="Converter"
+    heading="Press Release to Blog Post Converter"
+    intro="PressFolio converts a press release into a publish-ready blog post. Paste the release, and the converter extracts the source, date, location, headline, quotes, and figures, then formats everything into an article you can edit and export."
+    description="Paste a press release and get a publish-ready blog post. PressFolio extracts the source, date, headline, quotes, and figures for you."
+    breadcrumb={[{ name: 'Home', path: '/' }, { name: 'Press Release to Blog Post', path: '/press-release-to-blog-post' }]}
+    faqs={faqs}
+>
+    <h2>What the converter does that a generic AI writer does not</h2>
+    <p>
+        A general-purpose writing assistant will produce fluent text, but it treats the release as inspiration rather
+        than as a source of record. That is exactly where announcements break: a figure gets rounded, a quote loses
+        its attribution, or the dateline disappears. PressFolio treats the release as structured input. It locates the
+        issuing body, the publication date, the location, the headline, the strongest quoted statement, and the
+        numeric figures, and it carries each of those into the article attached to the claim it belongs to.
+    </p>
+    <blockquote>
+        A press release is a factual document. The conversion job is preservation first, prose second.
+    </blockquote>
+
+    <h2>What gets extracted</h2>
+    <ul>
+        <li><strong>Source</strong> — ministry, company, agency, or issuing department, kept for the byline and attribution.</li>
+        <li><strong>Date</strong> — the dateline and “Posted On” timestamp, normalised for the article header.</li>
+        <li><strong>Location</strong> — the city or venue the announcement was issued from.</li>
+        <li><strong>Headline</strong> — the release title, reused as the post title.</li>
+        <li><strong>Key quote</strong> — the attributable statement from the official or spokesperson, with the speaker named.</li>
+        <li><strong>Figures</strong> — budgets, percentages, volumes, and dates, kept as written.</li>
+        <li><strong>Context</strong> — the supporting paragraphs that explain why the announcement matters.</li>
+    </ul>
+
+    <h2>The five stages</h2>
+    <ol>
+        <li><strong>Input</strong> — paste the release, choose PIB, company, ministerial, or other.</li>
+        <li><strong>Parse</strong> — the converter extracts the parameters above.</li>
+        <li><strong>Refine</strong> — correct anything the parser got wrong and choose the output format.</li>
+        <li><strong>Compose</strong> — review the formatted article with headings, lists, and quotes applied.</li>
+        <li><strong>Export</strong> — copy Markdown, download <code>.md</code>, or copy HTML.</li>
+    </ol>
+
+    <h2>Choosing between article, brief, and thread</h2>
+    <table>
+        <thead>
+            <tr><th>Format</th><th>Best for</th><th>Typical length</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>News article</td><td>Blog posts, newsroom publishing, SEO content</td><td>500–900 words</td></tr>
+            <tr><td>Quick brief</td><td>Newsletters, internal updates, intake summaries</td><td>150–250 words</td></tr>
+            <tr><td>Tweet thread</td><td>Social distribution of the same announcement</td><td>5–8 posts</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Where this fits in a publishing workflow</h2>
+    <p>
+        The converter replaces the restructuring step, not the editorial one. In a typical PR or comms workflow the
+        release is written once, and then a writer spends an hour turning it into a post. PressFolio collapses that
+        hour into a review pass. If you publish on a schedule, it also makes
+        <a href="/pr-content-repurposing">repurposing one release into several formats</a> practical on the same day
+        the announcement lands.
+    </p>
+    <p>
+        Start with the <a href="/">converter on the homepage</a>, read
+        <a href="/blog/how-to-convert-a-press-release-into-a-blog-post">the step-by-step guide</a>, or review
+        <a href="/blog/press-release-to-blog-post-examples">worked before-and-after examples</a>.
+    </p>
+</GuideLayout>

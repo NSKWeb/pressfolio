@@ -1,0 +1,94 @@
+---
+import GuideLayout from '../layouts/GuideLayout.astro';
+
+const faqs = [
+    {
+        question: 'How do I turn a company announcement into a blog post?',
+        answer:
+            'Paste the announcement text into PressFolio, run the auto-parse to extract the source, date, headline, quote, and figures, refine anything that reads wrong, then generate the post and export it as Markdown or HTML.',
+    },
+    {
+        question: 'Which kinds of announcements work best?',
+        answer:
+            'Funding rounds, product launches, partnerships, hires, awards, and policy or regulatory announcements all convert well because they share a predictable structure: a headline claim, a supporting quote, and a few key numbers.',
+    },
+    {
+        question: 'Should I publish the announcement as-is or rewrite it?',
+        answer:
+            'Publish a converted article, not the raw announcement. Announcements are written for journalists and open with a dateline, while a blog post needs a reader-facing opening and context for people who have not been following the story.',
+    },
+];
+---
+
+<GuideLayout
+    eyebrow="Use case"
+    heading="Announcement to Blog Post: Funding, Product, and Hiring News"
+    metaTitle="Announcement to Blog Post"
+    intro="Announcements are written for press distribution, not for readers. Here is how to convert funding rounds, product launches, partnerships, and hiring news into blog posts that people actually finish reading."
+    description="Convert funding rounds, product launches, partnerships, and hiring news into blog posts readers finish, without losing a figure or a quote."
+    breadcrumb={[{ name: 'Home', path: '/' }, { name: 'Announcement to Blog', path: '/announcement-to-blog' }]}
+    faqs={faqs}
+>
+    <h2>Why raw announcements do not work as blog posts</h2>
+    <p>
+        An announcement opens with a dateline and a city, states the news in the third person, and attributes a quote
+        to someone the reader may not know. That structure exists to make a journalist’s job easy. On your own blog it
+        reads as distant and gets abandoned in the first paragraph.
+    </p>
+    <p>
+        The fix is not to invent a story. It is to reorder the same facts: lead with the thing that changed, explain
+        why it matters to the reader, keep the quote as supporting evidence, and put the figures in a short list
+        instead of burying them in prose.
+    </p>
+
+    <h2>Converting each announcement type</h2>
+    <h3>Funding and investment announcements</h3>
+    <p>
+        Lead with the amount, the round, and the investor. Then explain what the money funds and over what period. The
+        figures to preserve are the round size, the valuation if disclosed, the total raised to date, and the stated
+        use of funds. Avoid repeating the boilerplate “about the company” paragraph at the end — move anything
+        genuinely useful into the body.
+    </p>
+
+    <h3>Product and feature launches</h3>
+    <p>
+        Lead with the problem the product solves, not the version number. Keep availability, pricing, and platform
+        support as explicit facts. Product announcements degrade badly when the copy drifts into adjectives, so hold
+        the feature list to what the release actually claims.
+    </p>
+
+    <h3>Partnerships and integrations</h3>
+    <p>
+        State who is partnering with whom in the first sentence, then explain what the customer gets. Preserve both
+        companies’ names in full on first mention, and keep any quoted spokespeople attributed with their titles.
+    </p>
+
+    <h3>Hires, promotions, and awards</h3>
+    <p>
+        These are short by nature. Lead with the name, the role, and the remit. Keep the previous role and any
+        relevant numbers — years of experience, team size, revenue owned — as supporting detail rather than the
+        headline.
+    </p>
+
+    <h2>What to keep, what to drop</h2>
+    <table>
+        <thead>
+            <tr><th>Keep</th><th>Drop or move</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>The specific change announced</td><td>Datelines and “FOR IMMEDIATE RELEASE” headers</td></tr>
+            <tr><td>Figures exactly as issued</td><td>Boilerplate “about us” paragraphs</td></tr>
+            <tr><td>Attributed quotes and names</td><td>Media contact blocks</td></tr>
+            <tr><td>Dates, availability, pricing</td><td>Repeated superlatives and unverifiable claims</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Then publish it properly</h2>
+    <p>
+        A converted post still needs a title tag, a meta description, and accurate attribution. Work through the
+        <a href="/blog/press-release-seo-checklist">press release SEO checklist</a> before publishing, and if you are
+        producing multiple formats from the same announcement, see
+        <a href="/pr-content-repurposing">PR content repurposing</a>. To run the conversion now, use the
+        <a href="/">PressFolio converter</a>.
+    </p>
+</GuideLayout>

@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+    title="Page Not Found"
+    description="The page you were looking for could not be found. Head back to PressFolio to convert press releases into blog posts."
+    noindex={true}
+>
+    <Header currentPage="/404" />
+
+    <main class="container">
+        <div style="text-align: center; padding: 4rem 0;">
+            <h1 style="font-size: 4rem; margin-bottom: 0.5rem;">404</h1>
+            <p class="hero-tagline">That page doesn't exist. It may have been moved or deleted.</p>
+            <div style="margin-top: 2rem;">
+                <a href="/" class="btn btn-primary" style="font-size: 1rem; padding: 1rem 2rem;">← Back to the Tool</a>
+            </div>
+        </div>
+
+        <div style="max-width: 640px; margin: 0 auto; text-align: center;">
+            <h2>Looking for something?</h2>
+            <p>You might want the press release to blog converter, or to learn how it works.</p>
+            <ul style="list-style: none; padding: 0; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                <li><a href="/">Press to Blog Converter</a></li>
+                <li><a href="/how-it-works">How It Works</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <Footer />
+</BaseLayout>

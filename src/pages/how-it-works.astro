@@ -2,9 +2,34 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+const steps = [
+    { name: 'Paste Your Press Release', text: 'Copy the text from any official press release - PIB India, company announcements, ministerial statements - and paste it into PressFolio.' },
+    { name: 'Auto-Parse', text: 'The parser automatically extracts the source ministry, date, location, headline, key quote, and important figures.' },
+    { name: 'Refine & Edit', text: 'Review the extracted parameters and choose a blog format: full article, quick brief, or tweet thread style.' },
+    { name: 'Generate Blog Post', text: 'Generate a formatted blog post and see a live preview with headings, lists, quotes, and styling.' },
+    { name: 'Export & Share', text: 'Copy as Markdown, download as a .md file, or copy as HTML, ready to publish anywhere.' },
+];
+
+const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to convert a press release into a blog post',
+    description: 'Transform any press release into a blog post in 5 simple steps.',
+    step: steps.map((s, i) => ({
+        '@type': 'HowToStep',
+        position: i + 1,
+        name: s.name,
+        text: s.text,
+    })),
+};
 ---
 
-<BaseLayout title="How It Works" description="Learn how PressFolio transforms press releases into blog posts.">
+<BaseLayout
+    title="How It Works"
+    description="Learn how PressFolio transforms press releases into blog posts in 5 simple steps."
+    jsonLd={jsonLd}
+>
     <Header currentPage="/how-it-works" />
     
     <main class="container">

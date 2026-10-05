@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 470" width="1240" height="470" role="img" aria-labelledby="t d">
+  <title id="t">The SEO audit pipeline used to build PressFolio</title>
+  <desc id="d">Seven steps from discovering the stack to shipping a pull request: discover, technical foundation, on-page SEO, content and E-E-A-T, off-page authority, measurement, and deliverables.</desc>
+  <rect width="1240" height="470" fill="#FAFAF8"/>
+  <rect x="0" y="0" width="1240" height="10" fill="#1A1A1A"/>
+  <text x="48" y="74" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="15" fill="#D62828" font-weight="700" letter-spacing="3">SEO FOUNDATION · PIPELINE</text>
+  <text x="46" y="124" font-family="Georgia, 'Times New Roman', serif" font-size="40" fill="#1A1A1A" font-weight="700">How this site was audited &amp; fixed</text>
+  <text x="48" y="158" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="17" fill="#4A4A4A">The same 7-step process from the SEO_PROMPT toolkit — discover first, never guess.</text>
+  <line x1="48" y1="182" x2="1192" y2="182" stroke="#1A1A1A" stroke-width="3"/>
+  <rect x="52.0" y="226" width="151.42857142857142" height="190" fill="#1A1A1A"/>
+  <rect x="48.0" y="222" width="151.42857142857142" height="190" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.5"/>
+  <rect x="48.0" y="222" width="151.42857142857142" height="8" fill="#D62828"/>
+  <text x="68.0" y="278" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="26" fill="#D62828" font-weight="700">01</text>
+  <text x="68.0" y="310" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#1A1A1A" font-weight="700">Discover</text>
+  <text x="68.0" y="342" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#4A4A4A">stack · rendering</text>
+  <text x="68.0" y="364" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#4A4A4A">· routes · domain</text>
+  <path d="M 201.42857142857142 317.0 l 10 0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <path d="M 208.42857142857142 311.0 l 7 6 l -7 6 z" fill="#1A1A1A"/>
+  <rect x="217.42857142857142" y="226" width="151.42857142857142" height="190" fill="#1A1A1A"/>
+  <rect x="213.42857142857142" y="222" width="151.42857142857142" height="190" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.5"/>
+  <rect x="213.42857142857142" y="222" width="151.42857142857142" height="8" fill="#D62828"/>
+  <text x="233.42857142857142" y="278" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="26" fill="#D62828" font-weight="700">02</text>
+  <text x="233.42857142857142" y="310" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#1A1A1A" font-weight="700">Foundation</text>
+  <text x="233.42857142857142" y="342" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#4A4A4A">robots · sitemap</text>
+  <text x="233.42857142857142" y="364" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#4A4A4A">canonical · HTTPS</text>
+  <path d="M 366.85714285714283 317.0 l 10 0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <path d="M 373.85714285714283 311.0 l 7 6 l -7 6 z" fill="#1A1A1A"/>
+  <rect x="382.85714285714283" y="226" width="151.42857142857142" height="190" fill="#1A1A1A"/>
+  <rect x="378.85714285714283" y="222" width="151.42857142857142" height="190" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.5"/>
+  <rect x="378.85714285714283" y="222" width="151.42857142857142" height="8" fill="#D62828"/>
+  <text x="398.85714285714283" y="278" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="26" fill="#D62828" font-weight="700">03</text>
+  <text x="398.85714285714283" y="310" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#1A1A1A" font-weight="700">On-page</text>
+  <text x="398.85714285714283" y="342" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#4A4A4A">title · meta · H1</text>
+  <text x="398.85714285714283" y="364" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#4A4A4A">OG · JSON-LD</text>
+  <path d="M 532.2857142857142 317.0 l 10 0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <path d="M 539.2857142857142 311.0 l 7 6 l -7 6 z" fill="#1A1A1A"/>
+  <rect x="548.2857142857142" y="226" width="151.42857142857142" height="190" fill="#1A1A1A"/>
+  <rect x="544.2857142857142" y="222" width="151.42857142857142" height="190" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.5"/>
+  <rect x="544.2857142857142" y="222" width="151.42857142857142" height="8" fill="#D62828"/>
+  <text x="564.2857142857142" y="278" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="26" fill="#D62828" font-weight="700">04</text>
+  <text x="564.2857142857142" y="310" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#1A1A1A" font-weight="700">Content</text>
+  <text x="564.2857142857142" y="342" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#4A4A4A">about · contact</text>
+  <text x="564.2857142857142" y="364" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#4A4A4A">E-E-A-T · dates</text>
+  <path d="M 697.7142857142857 317.0 l 10 0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <path d="M 704.7142857142857 311.0 l 7 6 l -7 6 z" fill="#1A1A1A"/>
+  <rect x="713.7142857142857" y="226" width="151.42857142857142" height="190" fill="#1A1A1A"/>
+  <rect x="709.7142857142857" y="222" width="151.42857142857142" height="190" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.5"/>
+  <rect x="709.7142857142857" y="222" width="151.42857142857142" height="8" fill="#D62828"/>
+  <text x="729.7142857142857" y="278" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="26" fill="#D62828" font-weight="700">05</text>
+  <text x="729.7142857142857" y="310" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#1A1A1A" font-weight="700">Off-page</text>
+  <text x="729.7142857142857" y="342" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#4A4A4A">backlinks · brand</text>
+  <text x="729.7142857142857" y="364" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#4A4A4A">penalty avoidance</text>
+  <path d="M 863.1428571428571 317.0 l 10 0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <path d="M 870.1428571428571 311.0 l 7 6 l -7 6 z" fill="#1A1A1A"/>
+  <rect x="879.1428571428571" y="226" width="151.42857142857142" height="190" fill="#1A1A1A"/>
+  <rect x="875.1428571428571" y="222" width="151.42857142857142" height="190" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.5"/>
+  <rect x="875.1428571428571" y="222" width="151.42857142857142" height="8" fill="#D62828"/>
+  <text x="895.1428571428571" y="278" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="26" fill="#D62828" font-weight="700">06</text>
+  <text x="895.1428571428571" y="310" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#1A1A1A" font-weight="700">Measure</text>
+  <text x="895.1428571428571" y="342" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#4A4A4A">Search Console</text>
+  <text x="895.1428571428571" y="364" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#4A4A4A">GA4 (opt-in) · Bing</text>
+  <path d="M 1028.5714285714284 317.0 l 10 0" stroke="#1A1A1A" stroke-width="2.5"/>
+  <path d="M 1035.5714285714284 311.0 l 7 6 l -7 6 z" fill="#1A1A1A"/>
+  <rect x="1044.5714285714284" y="226" width="151.42857142857142" height="190" fill="#1A1A1A"/>
+  <rect x="1040.5714285714284" y="222" width="151.42857142857142" height="190" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.5"/>
+  <rect x="1040.5714285714284" y="222" width="151.42857142857142" height="8" fill="#D62828"/>
+  <text x="1060.5714285714284" y="278" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="26" fill="#D62828" font-weight="700">07</text>
+  <text x="1060.5714285714284" y="310" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#1A1A1A" font-weight="700">Deliver</text>
+  <text x="1060.5714285714284" y="342" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#4A4A4A">audit · fixes</text>
+  <text x="1060.5714285714284" y="364" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#4A4A4A">build · one PR</text>
+  <text x="620.0" y="444" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#7A7A7A" text-anchor="middle">Every finding cites file:line evidence — no invented metrics or rankings.</text>
+</svg>

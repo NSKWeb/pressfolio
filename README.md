@@ -193,3 +193,17 @@ This project is licensed under the MIT License.
 ## Contact
 
 Have questions? [Open an issue](https://github.com/NSKWeb/pressfolio/issues)
+
+---
+
+## SEO & Search Visibility
+
+This repo includes a reusable SEO audit prompt and an agent skill to help PressFolio rank
+well on Google and other search engines.
+
+- [`SEO_PROMPT.md`](SEO_PROMPT.md) - copy-paste prompt for any AI agent (OpenHands, Copilot, Cursor, etc.)
+- [`.agents/skills/seo-audit/SKILL.md`](.agents/skills/seo-audit/SKILL.md) - OpenHands skill that runs the audit automatically
+
+It covers crawlability, `robots.txt`/`sitemap.xml`, meta titles and descriptions, canonical
+tags, JSON-LD structured data, Core Web Vitals, mobile-first, and E-E-A-T. To use it, run the
+`seo-audit` skill in this repo, or paste the prompt from `SEO_PROMPT.md`.

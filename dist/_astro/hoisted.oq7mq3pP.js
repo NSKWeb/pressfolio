@@ -1,1 +1,0 @@
-import"./hoisted.DOttxPmw.js";document.getElementById("contact-form")?.addEventListener("submit",e=>{e.preventDefault(),alert("Thank you for your message! This is a demo - in production, this would send an email.")});

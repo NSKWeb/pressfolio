@@ -2,9 +2,35 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+const jsonLd = [
+    {
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        name: 'Contact PressFolio',
+        url: 'https://pressfolio.vercel.app/contact',
+        description: 'Get in touch with the PressFolio team for feedback, bug reports, feature requests, or partnerships.',
+    },
+    {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'PressFolio',
+        url: 'https://pressfolio.vercel.app',
+        contactPoint: {
+            '@type': 'ContactPoint',
+            contactType: 'customer support',
+            url: 'https://pressfolio.vercel.app/contact',
+            availableLanguage: 'English',
+        },
+    },
+];
 ---
 
-<BaseLayout title="Contact" description="Get in touch with PressFolio.">
+<BaseLayout
+    title="Contact"
+    description="Get in touch with the PressFolio team for feedback, bug reports, feature requests, or partnerships."
+    jsonLd={jsonLd}
+>
     <Header currentPage="/contact" />
     
     <main class="container">

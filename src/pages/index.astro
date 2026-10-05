@@ -2,16 +2,70 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+const site = 'https://pressfolio.vercel.app';
+
+const jsonLd = [
+    {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'PressFolio',
+        url: site,
+        description: 'Transform press releases into beautiful blog posts instantly.',
+        inLanguage: 'en',
+    },
+    {
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: 'PressFolio',
+        url: site,
+        applicationCategory: 'BusinessApplication',
+        operatingSystem: 'Any',
+        description: 'Free browser-based tool that converts press releases into formatted blog posts.',
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+    {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+            {
+                '@type': 'Question',
+                name: 'Is PressFolio free to use?',
+                acceptedAnswer: { '@type': 'Answer', text: 'Yes. PressFolio is completely free and requires no account or signup.' },
+            },
+            {
+                '@type': 'Question',
+                name: 'Is my press release text kept private?',
+                acceptedAnswer: { '@type': 'Answer', text: 'Yes. All parsing and formatting happens locally in your browser. Your text is never uploaded to a server.' },
+            },
+            {
+                '@type': 'Question',
+                name: 'What formats can I export?',
+                acceptedAnswer: { '@type': 'Answer', text: 'You can copy your post as Markdown, copy it as HTML, or download it as a .md file.' },
+            },
+            {
+                '@type': 'Question',
+                name: 'Does it work with PIB India press releases?',
+                acceptedAnswer: { '@type': 'Answer', text: 'Yes. PressFolio is tuned for PIB India releases and also supports company announcements and ministerial statements.' },
+            },
+        ],
+    },
+];
 ---
 
-<BaseLayout title="Press to Blog Converter" description="Transform press releases into beautiful blog posts instantly.">
+<BaseLayout
+    title="Press to Blog Converter"
+    description="Transform press releases into beautiful blog posts instantly."
+    jsonLd={jsonLd}
+>
     <Header currentPage="/" />
     
     <main>
         <!-- Hero -->
         <section class="hero container">
-            <h1>Press <span>→</span> Blog</h1>
-            <p class="hero-tagline">Paste any press release. Get a beautifully formatted blog post ready to publish.</p>
+            <h1>Press Release to Blog Converter</h1>
+            <p class="hero-tagline">Press<span>Folio</span> turns any press release into a beautifully formatted blog post ready to publish.</p>
+            <p class="hero-sub">Free, no signup, and 100% private — all processing happens in your browser.</p>
         </section>
 
         <!-- Ad -->
@@ -226,7 +280,7 @@ The Mission aims to deliver an annual production of 5 MMT (Million Metric Tonnes
 
                 <!-- Preview -->
                 <div class="preview-box" id="preview-box">
-                    <h1 class="preview-title" id="preview-title">Your Title Here</h1>
+                    <div class="preview-title" id="preview-title">Your Title Here</div>
                     <p class="preview-meta" id="preview-meta">Category • Date</p>
                     
                     <div class="preview-content" id="preview-content">
@@ -286,6 +340,42 @@ The Mission aims to deliver an annual production of 5 MMT (Million Metric Tonnes
         <div class="container">
             <div class="ad-placeholder leaderboard">📢 AD SPACE — Google AdSense</div>
         </div>
+
+        <!-- SEO content -->
+        <section class="container" style="padding: 3rem 0;">
+            <h2>What is PressFolio?</h2>
+            <p>PressFolio is a free, browser-based tool that turns official press releases into
+            publish-ready blog posts. Paste a press release from PIB India, a company announcement,
+            or a ministerial statement, and PressFolio extracts the headline, date, location, key
+            quote, and important figures, then formats everything into clean Markdown or HTML.</p>
+
+            <h2>Who is it for?</h2>
+            <p>Journalists, bloggers, and analysts use PressFolio to convert dry press releases into
+            readable articles in seconds. No signup, no installation, and no data leaves your browser.</p>
+        </section>
+
+        <!-- FAQ -->
+        <section class="container" style="padding: 2rem 0 3rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>Is PressFolio free to use?</h3>
+                    <p>Yes. PressFolio is completely free and requires no account or signup.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is my press release text kept private?</h3>
+                    <p>Yes. All parsing and formatting happens locally in your browser. Your text is never uploaded to a server.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What formats can I export?</h3>
+                    <p>You can copy your post as Markdown, copy it as HTML, or download it as a .md file, ready for WordPress, Medium, Ghost, or your own site.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does it work with PIB India press releases?</h3>
+                    <p>Yes. PressFolio is tuned for PIB India releases and also supports company announcements and ministerial statements.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <Footer />

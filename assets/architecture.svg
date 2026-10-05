@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" width="1200" height="380" role="img" aria-label="Architecture: browser, Astro SSR on Vercel, optional AI provider">
+  <defs>
+    <style>
+      .ink { fill: #1A1A1A; }
+      .red { fill: #D62828; }
+      .card { fill: #FFFFFF; stroke: #1A1A1A; stroke-width: 3; }
+      .shadow { fill: #1A1A1A; }
+      .soft { fill: #F5F5F0; }
+      .sans { font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif; }
+      .mono { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+      .serif { font-family: 'Playfair Display', Georgia, serif; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1200" height="380" fill="#FAFAF8"/>
+  <text class="serif" x="40" y="52" font-size="30" font-weight="700" fill="#1A1A1A">Architecture</text>
+  <rect class="red" x="238" y="34" width="52" height="6"/>
+
+  <!-- Browser box -->
+  <rect class="shadow" x="46" y="116" width="280" height="180" rx="10"/>
+  <rect class="card" x="40" y="110" width="280" height="180" rx="10"/>
+  <text class="sans" x="64" y="150" font-size="20" font-weight="700" fill="#1A1A1A">Browser</text>
+  <text class="mono" x="64" y="178" font-size="13" fill="#7A7A7A">Client-side</text>
+  <rect class="soft" x="64" y="194" width="232" height="9" rx="3"/>
+  <rect class="soft" x="64" y="212" width="180" height="9" rx="3"/>
+  <rect class="soft" x="64" y="230" width="210" height="9" rx="3"/>
+  <rect class="soft" x="64" y="248" width="140" height="9" rx="3"/>
+
+  <!-- Arrow 1 -->
+  <line x1="328" y1="200" x2="392" y2="200" stroke="#D62828" stroke-width="8" stroke-linecap="round"/>
+  <polygon points="392,182 418,200 392,218" fill="#D62828"/>
+  <text class="mono" x="360" y="176" font-size="12" text-anchor="middle" fill="#7A7A7A">POST</text>
+
+  <!-- Vercel box -->
+  <rect class="shadow" x="426" y="86" width="340" height="240" rx="10"/>
+  <rect class="card" x="420" y="80" width="340" height="240" rx="10"/>
+  <rect class="red" x="420" y="80" width="340" height="42" rx="10"/>
+  <rect class="red" x="420" y="108" width="340" height="14"/>
+  <text class="sans" x="448" y="108" font-size="18" font-weight="700" fill="#FFFFFF">Astro SSR on Vercel</text>
+
+  <text class="mono" x="448" y="152" font-size="13" fill="#7A7A7A">ROUTES</text>
+  <text class="sans" x="448" y="176" font-size="15" fill="#1A1A1A">/</text>
+  <text class="sans" x="448" y="198" font-size="15" fill="#1A1A1A">/api/generate</text>
+  <text class="sans" x="448" y="220" font-size="15" fill="#1A1A1A">/sitemap.xml · /robots.txt</text>
+  <text class="sans" x="448" y="242" font-size="15" fill="#1A1A1A">/how-it-works · /contact</text>
+  <text class="sans" x="448" y="264" font-size="15" fill="#1A1A1A">/privacy · /terms</text>
+
+  <!-- Arrow 2 -->
+  <line x1="766" y1="200" x2="830" y2="200" stroke="#059669" stroke-width="8" stroke-linecap="round" stroke-dasharray="2 14"/>
+  <polygon points="830,182 856,200 830,218" fill="#059669"/>
+  <text class="mono" x="792" y="176" font-size="12" text-anchor="middle" fill="#7A7A7A">optional</text>
+
+  <!-- AI box -->
+  <rect class="shadow" x="864" y="116" width="280" height="180" rx="10"/>
+  <rect class="card" x="858" y="110" width="280" height="180" rx="10"/>
+  <text class="sans" x="882" y="150" font-size="20" font-weight="700" fill="#1A1A1A">AI Provider</text>
+  <text class="mono" x="882" y="178" font-size="13" fill="#7A7A7A">NaraRouter (free)</text>
+  <rect class="soft" x="882" y="194" width="232" height="9" rx="3"/>
+  <rect class="soft" x="882" y="212" width="180" height="9" rx="3"/>
+  <rect class="soft" x="882" y="230" width="210" height="9" rx="3"/>
+  <text class="sans" x="882" y="266" font-size="14" fill="#4A4A4A">Basic mode needs no key.</text>
+</svg>

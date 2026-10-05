@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="1200" height="480" role="img" aria-label="PressFolio: transform a press release into a blog post">
+  <defs>
+    <style>
+      .bg { fill: #FAFAF8; }
+      .ink { fill: #1A1A1A; }
+      .red { fill: #D62828; }
+      .card { fill: #FFFFFF; stroke: #1A1A1A; stroke-width: 3; }
+      .shadow { fill: #1A1A1A; }
+      .mono { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace; }
+      .sans { font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif; }
+      .serif { font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; }
+      .muted { fill: #7A7A7A; }
+      .soft { fill: #F5F5F0; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="480"/>
+
+  <!-- Wordmark -->
+  <text class="serif" x="48" y="70" font-size="44" font-weight="700" fill="#1A1A1A">PressFolio</text>
+  <rect class="red" x="300" y="52" width="64" height="7"/>
+  <text class="sans" x="48" y="104" font-size="19" fill="#4A4A4A">Transform press releases into beautiful blog posts</text>
+
+  <!-- LEFT: source press release -->
+  <rect class="shadow" x="79" y="160" width="300" height="250" rx="10"/>
+  <rect class="card" x="69" y="150" width="300" height="250" rx="10"/>
+  <rect class="red" x="99" y="184" width="46" height="6"/>
+  <text class="mono" x="99" y="222" font-size="15" fill="#7A7A7A">PRESS RELEASE</text>
+  <rect class="ink" x="99" y="242" width="220" height="12" rx="3"/>
+  <rect class="ink" x="99" y="266" width="180" height="12" rx="3"/>
+  <rect class="soft" x="99" y="298" width="240" height="10" rx="3"/>
+  <rect class="soft" x="99" y="318" width="240" height="10" rx="3"/>
+  <rect class="soft" x="99" y="338" width="170" height="10" rx="3"/>
+  <rect class="soft" x="99" y="358" width="210" height="10" rx="3"/>
+
+  <!-- ARROW with label -->
+  <line x1="392" y1="275" x2="486" y2="275" stroke="#D62828" stroke-width="9" stroke-linecap="round"/>
+  <polygon points="486,250 524,275 486,300" fill="#D62828"/>
+  <rect class="red" x="382" y="160" width="120" height="34" rx="17"/>
+  <text class="mono" x="442" y="182" font-size="15" text-anchor="middle" fill="#FFFFFF">AI PARSE</text>
+
+  <!-- RIGHT: blog post -->
+  <rect class="shadow" x="575" y="160" width="300" height="250" rx="10"/>
+  <rect class="card" x="565" y="150" width="300" height="250" rx="10"/>
+  <rect class="red" x="565" y="150" width="300" height="46" rx="10"/>
+  <rect class="red" x="565" y="182" width="300" height="14"/>
+  <text class="mono" x="595" y="180" font-size="15" fill="#FFFFFF">BLOG POST</text>
+  <rect class="ink" x="595" y="222" width="200" height="12" rx="3"/>
+  <rect class="soft" x="595" y="252" width="240" height="10" rx="3"/>
+  <rect class="soft" x="595" y="272" width="240" height="10" rx="3"/>
+  <rect class="soft" x="595" y="292" width="150" height="10" rx="3"/>
+  <rect class="soft" x="595" y="312" width="220" height="10" rx="3"/>
+  <rect class="soft" x="595" y="332" width="240" height="10" rx="3"/>
+  <rect class="soft" x="595" y="352" width="120" height="10" rx="3"/>
+
+  <!-- Checklist column -->
+  <text class="sans" x="900" y="150" font-size="17" font-weight="700" fill="#1A1A1A">Includes</text>
+  <g class="sans" font-size="16">
+    <circle cx="912" cy="186" r="11" fill="#059669"/>
+    <path d="M906 186 l4 4 l8 -9" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="936" y="192" fill="#1A1A1A">Headlines &amp; deck</text>
+
+    <circle cx="912" cy="222" r="11" fill="#059669"/>
+    <path d="M906 222 l4 4 l8 -9" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="936" y="228" fill="#1A1A1A">Pull quotes</text>
+
+    <circle cx="912" cy="258" r="11" fill="#059669"/>
+    <path d="M906 258 l4 4 l8 -9" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="936" y="264" fill="#1A1A1A">Key figures</text>
+
+    <circle cx="912" cy="294" r="11" fill="#059669"/>
+    <path d="M906 294 l4 4 l8 -9" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="936" y="300" fill="#1A1A1A">Markdown / HTML</text>
+
+    <circle cx="912" cy="330" r="11" fill="#059669"/>
+    <path d="M906 330 l4 4 l8 -9" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="936" y="336" fill="#1A1A1A">Ready to publish</text>
+  </g>
+</svg>

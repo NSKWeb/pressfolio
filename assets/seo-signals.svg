@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 560" width="1240" height="560" role="img" aria-labelledby="t d">
+  <title id="t">SEO signals that ship with every PressFolio page</title>
+  <desc id="d">A browser window showing the head tags rendered on each page, plus the five JSON-LD schema types, security headers, and an opt-in measurement block.</desc>
+  <rect width="1240" height="560" fill="#FAFAF8"/>
+  <rect x="0" y="0" width="1240" height="10" fill="#1A1A1A"/>
+  <text x="48" y="74" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="15" fill="#D62828" font-weight="700" letter-spacing="3">SEO FOUNDATION · SIGNALS</text>
+  <text x="46" y="124" font-family="Georgia, 'Times New Roman', serif" font-size="40" fill="#1A1A1A" font-weight="700">What ships on every page</text>
+  <text x="48" y="158" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="17" fill="#4A4A4A">Rendered in the static HTML — fully crawlable, no client-render gap.</text>
+  <line x1="48" y1="182" x2="1192" y2="182" stroke="#1A1A1A" stroke-width="3"/>
+  <rect x="53" y="219" width="560" height="300" fill="#1A1A1A"/>
+  <rect x="48" y="214" width="560" height="300" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="3"/>
+  <rect x="48" y="214" width="560" height="44" fill="#1A1A1A"/>
+  <circle cx="74" cy="236" r="8" fill="#D62828"/>
+  <circle cx="100" cy="236" r="8" fill="#F0B429"/>
+  <circle cx="126" cy="236" r="8" fill="#059669"/>
+  <text x="66" y="292" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="16" fill="#D62828" font-weight="700">&lt;head&gt;</text>
+  <path d="M 70 322.9 l 5.76 6.84 l 11.16 -15.48" fill="none" stroke="#059669" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="100" y="326" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="14" fill="#1A1A1A">&lt;title&gt; unique, keyword-first</text>
+  <path d="M 70 354.9 l 5.76 6.84 l 11.16 -15.48" fill="none" stroke="#059669" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="100" y="358" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="14" fill="#1A1A1A">&lt;meta name=description&gt; 150–160</text>
+  <path d="M 70 386.9 l 5.76 6.84 l 11.16 -15.48" fill="none" stroke="#059669" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="100" y="390" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="14" fill="#1A1A1A">&lt;link rel=canonical&gt;</text>
+  <path d="M 70 418.9 l 5.76 6.84 l 11.16 -15.48" fill="none" stroke="#059669" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="100" y="422" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="14" fill="#1A1A1A">og:* + twitter:card</text>
+  <path d="M 70 450.9 l 5.76 6.84 l 11.16 -15.48" fill="none" stroke="#059669" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="100" y="454" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="14" fill="#1A1A1A">apple-touch-icon + favicon</text>
+  <path d="M 70 482.9 l 5.76 6.84 l 11.16 -15.48" fill="none" stroke="#059669" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="100" y="486" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="14" fill="#1A1A1A">&lt;script type=application/ld+json&gt;</text>
+  <text x="66" y="496" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="16" fill="#D62828" font-weight="700">&lt;/head&gt;</text>
+  <rect x="653" y="219" width="544" height="138" fill="#1A1A1A"/>
+  <rect x="648" y="214" width="544" height="138" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="3"/>
+  <rect x="648" y="214" width="544" height="40" fill="#D62828"/>
+  <text x="666" y="241" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="14" fill="#FFFFFF" font-weight="700" letter-spacing="1">JSON-LD SCHEMA TYPES</text>
+  <rect x="666" y="276" width="86.39999999999999" height="34" fill="#FAFAF8" stroke="#1A1A1A" stroke-width="2"/>
+  <text x="677" y="299" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="14" fill="#1A1A1A">WebSite</text>
+  <rect x="764.4" y="276" width="150.79999999999998" height="34" fill="#FAFAF8" stroke="#1A1A1A" stroke-width="2"/>
+  <text x="775.4" y="299" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="14" fill="#1A1A1A">WebApplication</text>
+  <rect x="927.1999999999999" y="276" width="86.39999999999999" height="34" fill="#FAFAF8" stroke="#1A1A1A" stroke-width="2"/>
+  <text x="938.1999999999999" y="299" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="14" fill="#1A1A1A">FAQPage</text>
+  <rect x="1025.6" y="276" width="123.19999999999999" height="34" fill="#FAFAF8" stroke="#1A1A1A" stroke-width="2"/>
+  <text x="1036.6" y="299" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="14" fill="#1A1A1A">ContactPage</text>
+  <rect x="666" y="320" width="132.39999999999998" height="34" fill="#FAFAF8" stroke="#1A1A1A" stroke-width="2"/>
+  <text x="677" y="343" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="14" fill="#1A1A1A">Organization</text>
+  <rect x="653" y="373" width="544" height="146" fill="#1A1A1A"/>
+  <rect x="648" y="368" width="544" height="146" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="3"/>
+  <rect x="648" y="368" width="544" height="40" fill="#1A1A1A"/>
+  <text x="666" y="395" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="14" fill="#FFFFFF" font-weight="700" letter-spacing="1">HARDENING &amp; MEASUREMENT</text>
+  <circle cx="674" cy="425" r="4" fill="#D62828"/>
+  <text x="690" y="430" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="14.5" fill="#1A1A1A" font-weight="700">Security headers + HSTS</text>
+  <text x="1176" y="430" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="12.5" fill="#7A7A7A" text-anchor="end">vercel.json</text>
+  <circle cx="674" cy="455" r="4" fill="#D62828"/>
+  <text x="690" y="460" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="14.5" fill="#1A1A1A" font-weight="700">GA4 / Search Console / Bing</text>
+  <text x="1176" y="460" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="12.5" fill="#7A7A7A" text-anchor="end">opt-in, env-gated</text>
+  <circle cx="674" cy="485" r="4" fill="#D62828"/>
+  <text x="690" y="490" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="14.5" fill="#1A1A1A" font-weight="700">robots.txt + sitemap.xml</text>
+  <text x="1176" y="490" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="12.5" fill="#7A7A7A" text-anchor="end">dynamic, route-driven</text>
+</svg>

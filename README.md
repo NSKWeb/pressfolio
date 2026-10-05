@@ -236,23 +236,51 @@ restrained red accent.
 
 ## 🔍 SEO & search visibility
 
-PressFolio ships with a solid technical SEO foundation — and a reusable toolkit you can drop
-into **any** web-facing repo.
+PressFolio ships with a solid technical SEO foundation — and it is the **canonical home of the
+reusable toolkit** behind it. The toolkit lives in its own repository at
+**[NSKWeb/SEO_PROMPT](https://github.com/NSKWeb/SEO_PROMPT)** and has since been applied to
+other NSKWeb projects.
 
-**Built in:**
+<p align="center">
+  <img src="assets/seo-audit.svg" alt="The 7-step SEO audit pipeline: discover, foundation, on-page, content, off-page, measure, deliver" width="1240" />
+</p>
 
-- 🤖 `robots.txt` + dynamic `sitemap.xml`
-- 🔗 Canonical tags, unique titles & meta descriptions
-- 📣 Open Graph + Twitter cards, OG image, favicon, apple-touch-icon
-- 🧩 JSON-LD structured data (WebSite, WebApplication, FAQPage, ContactPage, Organization)
-- 🛡️ Security headers + HSTS
-- 📈 Optional GA4 / Google Search Console / Bing verification (env-gated)
-- 📄 `SEO_AUDIT.md` and `SEO_STRATEGY.md` for the full audit and off-page plan
+**Technical foundation**
 
-**The toolkit:**
+- 🤖 `robots.txt` + a **dynamic `sitemap.xml`** (`src/pages/sitemap.xml.ts`) generated from the route list
+- 🔗 **Canonical tags**, unique titles & meta descriptions, consistent URL structure
+- 🛡️ **Security headers + HSTS** via `vercel.json`
+- 📱 Mobile-first Astro output (static HTML — fully crawlable, no client-render gap)
 
-- [`SEO_PROMPT.md`](SEO_PROMPT.md) — a copy-paste SEO prompt for any AI agent (OpenHands, Copilot, Cursor…)
-- [`.agents/skills/seo-audit/SKILL.md`](.agents/skills/seo-audit/SKILL.md) — an OpenHands skill that runs the audit automatically
+**On-page SEO**
+
+- 📣 **Open Graph + Twitter cards**, an `og-image.png`, favicon, and `apple-touch-icon`
+- 🧩 **JSON-LD structured data** — `WebSite`, `WebApplication`, `FAQPage`, `ContactPage`, and `Organization`
+- 🖼️ Descriptive `alt` text on every illustration
+- 🔗 Internal links between the tool, How-it-works, Contact, Privacy, and Terms pages
+
+<p align="center">
+  <img src="assets/seo-signals.svg" alt="The SEO signals shipped on every PressFolio page: head tags, five JSON-LD schema types, security headers, and opt-in measurement" width="1240" />
+</p>
+
+**Content & E-E-A-T**
+
+- 📖 About / how-it-works, contact, privacy, and terms pages establish ownership and trust
+
+**Measurement (opt-in, env-gated)**
+
+- 📈 Optional **GA4** plus Google Search Console / Bing verification — enabled only when the matching env vars are set
+
+**Audit & strategy**
+
+- 📄 [`SEO_AUDIT.md`](SEO_AUDIT.md) — the full pass/fail audit with `file:line` evidence
+- 🗺️ [`SEO_STRATEGY.md`](SEO_STRATEGY.md) — the off-page / authority plan
+
+**The toolkit**
+
+- 📝 [`SEO_PROMPT.md`](SEO_PROMPT.md) — a copy-paste SEO prompt for any AI agent (OpenHands, Copilot, Cursor…)
+- 🧠 [`.agents/skills/seo-audit/SKILL.md`](.agents/skills/seo-audit/SKILL.md) — an OpenHands skill that runs the audit automatically
+- 🌐 Mirrored at **[NSKWeb/SEO_PROMPT](https://github.com/NSKWeb/SEO_PROMPT)** for reuse across projects
 
 To use it in another repo, copy the skill folder in and tell your agent:
 
